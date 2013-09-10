@@ -37,13 +37,17 @@ module.exports = function(grunt) {
 		},
 
 		lintspaces: {
-			all: {
-				src: ['tests/files/*.txt'],
-				options: {
-					indentation: 'tabs',
-					trailingspaces: true,
-					newline: true
-				}
+			newline_okay: {
+				src: ['tests/files/newline_okay.txt'],
+				options: { newline: true }
+			},
+			newline_missing: {
+				src: ['tests/files/newline_missing.txt'],
+				options: { newline: true }
+			},
+			newlines_toomuch: {
+				src: ['tests/files/newline_toomuch.txt'],
+				options: { newline: true }
 			}
 		}
 	});
