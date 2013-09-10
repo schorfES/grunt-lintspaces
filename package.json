@@ -1,0 +1,25 @@
+{
+  "name": "grunt-lintspaces",
+  "description": "A Grunt task for checking spaces in files",
+  "version": "0.1.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/schorfES/grunt-lintspaces.git"
+  },
+  "author": "Norman Rusch (nrmnrsh / schorfES)",
+  "readmeFilename": "README.md",
+  "main": "Gruntfile.js",
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://github.com/schorfES/grunt-lintspaces/blob/master/LICENSE"
+    }
+  ],
+  "devDependencies": {
+    "grunt": "~0.4.1",
+    "grunt-contrib-jshint": "~0.4.3"
+  },
+  "keywords": [
+    "gruntplugin"
+  ]
+}
