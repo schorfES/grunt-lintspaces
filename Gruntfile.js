@@ -6,7 +6,8 @@ module.exports = function(grunt) {
 		jshint: {
 			all: [
 				'Gruntfile.js',
-				'tasks/**/*.js'
+				'tasks/**/*.js',
+				'tests/*.js'
 			],
 			options: {
 				'boss': true,
@@ -15,7 +16,10 @@ module.exports = function(grunt) {
 				'eqnull': true,
 				'expr': true,
 				'globals': {
-					'module': true
+					'module': true,
+					'require': true,
+					'exports': true,
+					'__dirname': true
 				},
 				'immed': true,
 				'noarg': true,
@@ -29,39 +33,10 @@ module.exports = function(grunt) {
 		},
 
 		nodeunit: {
-			all: ['test/*_test.js']
+			all: ['tests/test.js']
 		},
 
 		lintspaces: {
-			testNewlines: {
-				src: [
-					'tests/files/newline_okay.txt',
-					'tests/files/newline_missing.txt',
-					'tests/files/newline_toomuch.txt'
-				],
-				options: {
-					newline: true
-				}
-			},
-			testTrailingspaces: {
-				src: ['tests/files/trailingspaces.txt'],
-				options: {
-					trailingspaces: true
-				}
-			},
-			testIndentionTabs: {
-				src: ['tests/files/indentation_tabs.txt'],
-				options: {
-					indentation: 'tabs'
-				}
-			},
-			testIndentionSpaces: {
-				src: ['tests/files/indentation_spaces.txt'],
-				options: {
-					indentation: 'spaces',
-					spaces: 2
-				}
-			},
 			all: {
 				src: ['tests/files/*.txt'],
 				options: {
@@ -80,9 +55,7 @@ module.exports = function(grunt) {
 
 	//define tasks
 	grunt.registerTask('test', [
-		'lintspaces:testIndentionTabs',
-		'lintspaces:testNewlines',
-		'lintspaces:testTrailingspaces'
+		'nodeunit'
 	]);
 
 	grunt.registerTask('validate', [

@@ -45,12 +45,10 @@ module.exports = function(grunt) {
 				//print found warning for file
 				output += formatWarnings(options, path, warnings);
 			});
-
-			printOutput(output);
 		});
 
+		printOutput(output);
 	});
-
 
 
 	/* Validation functions. */
