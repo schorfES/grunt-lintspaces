@@ -33,7 +33,9 @@ module.exports = function(grunt) {
 				;
 
 				lines.forEach(function(line, index) {
+					//check indentation:
 					pushWarning(warnings, checkIndentation(options, line, index));
+					//check trailingspaces:
 					pushWarning(warnings, checkTrailingspaces(options, line, index));
 				});
 
@@ -55,8 +57,8 @@ module.exports = function(grunt) {
 	function checkIndentation(options, line, index) {
 		if(typeof options.indentation === 'string' && typeof line === 'string') {
 			var
-				tabsRegExp = /^\t*(?! ).*$/, //leading tabs without leading spaces
-				spacesRegExp = /^ *(?!\t).*$/, //leading spaces without leading tabs
+				tabsRegExp = /^\t*(?!\s).*$/, //leading tabs without leading spaces
+				spacesRegExp = /(^$|^ *(?!\t)[^ ].*$)/, //no empty line or leading spaces without leading tabs
 				spacesLeadingRegExp = /^( *).*$/,
 				matchSpaces
 			;
