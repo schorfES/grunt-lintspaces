@@ -28,15 +28,46 @@ module.exports = function(grunt) {
 			}
 		},
 
+		nodeunit: {
+			all: ['test/*_test.js']
+		},
+
 		lintspaces: {
-			testTrailingspaces: {
+			testNewlines: {
 				src: [
-					'tests/files/trailingspaces.txt'
+					'tests/files/newline_okay.txt',
+					'tests/files/newline_missing.txt',
+					'tests/files/newline_toomuch.txt'
 				],
 				options: {
-					newline: true,
-					indentation: 'tabs',
+					newline: true
+				}
+			},
+			testTrailingspaces: {
+				src: ['tests/files/trailingspaces.txt'],
+				options: {
 					trailingspaces: true
+				}
+			},
+			testIndentionTabs: {
+				src: ['tests/files/indentation_tabs.txt'],
+				options: {
+					indentation: 'tabs'
+				}
+			},
+			testIndentionSpaces: {
+				src: ['tests/files/indentation_spaces.txt'],
+				options: {
+					indentation: 'spaces',
+					spaces: 2
+				}
+			},
+			all: {
+				src: ['tests/files/*.txt'],
+				options: {
+					indentation: 'tabs',
+					trailingspaces: true,
+					newline: true
 				}
 			}
 		}
@@ -45,9 +76,12 @@ module.exports = function(grunt) {
 	//load tasks
 	grunt.loadTasks('tasks');
 	grunt.loadNpmTasks('grunt-contrib-jshint');
+	grunt.loadNpmTasks('grunt-contrib-nodeunit');
 
 	//define tasks
 	grunt.registerTask('test', [
+		'lintspaces:testIndentionTabs',
+		'lintspaces:testNewlines',
 		'lintspaces:testTrailingspaces'
 	]);
 
