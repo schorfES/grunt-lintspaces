@@ -1,5 +1,5 @@
 module.exports = function(grunt) {
-	//project configuration
+	// project configuration
 	grunt.initConfig({
 		pkg: grunt.file.readJSON('package.json'),
 
@@ -48,12 +48,12 @@ module.exports = function(grunt) {
 		}
 	});
 
-	//load tasks
+	// load tasks
 	grunt.loadTasks('tasks');
 	grunt.loadNpmTasks('grunt-contrib-jshint');
 	grunt.loadNpmTasks('grunt-contrib-nodeunit');
 
-	//define tasks
+	// define tasks
 	grunt.registerTask('test', [
 		'nodeunit'
 	]);

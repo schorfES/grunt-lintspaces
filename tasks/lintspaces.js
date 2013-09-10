@@ -4,8 +4,8 @@ module.exports = function(grunt) {
 		DEFAULTS = {
 			encoding: 'utf8',
 			newline: false,
-			indentation: false, //'tabs' or 'spaces' or false
-			spaces: 4, //amount of spaces when 'indentation' is set to 'spaces'
+			indentation: false, // 'tabs' or 'spaces' or false
+			spaces: 4, // amount of spaces when 'indentation' is set to 'spaces'
 			trailingspaces: false
 		},
 		MESSAGES = {
@@ -33,16 +33,16 @@ module.exports = function(grunt) {
 				;
 
 				lines.forEach(function(line, index) {
-					//check indentation:
+					// check indentation:
 					pushWarning(warnings, checkIndentation(options, line, index));
-					//check trailingspaces:
+					// check trailingspaces:
 					pushWarning(warnings, checkTrailingspaces(options, line, index));
 				});
 
-				//check newline at end of file:
+				// check newline at end of file:
 				pushWarning(warnings, checkNewline(options, lines));
 
-				//print found warning for file
+				// print found warning for file
 				output += formatWarnings(options, path, warnings);
 			});
 		});
@@ -55,29 +55,27 @@ module.exports = function(grunt) {
 	function checkIndentation(options, line, index) {
 		if(typeof options.indentation === 'string' && typeof line === 'string') {
 			var
-				tabsRegExp = /^\t*(?!\s).*$/, //leading tabs without leading spaces
-				spacesRegExp = /(^$|^ *(?!\t)[^ ].*$)/, //no empty line or leading spaces without leading tabs
-				spacesLeadingRegExp = /^( *).*$/,
-				matchSpaces
+				tabsRegExp = /^\t*(?!\s).*$/, // leading tabs without leading spaces
+				spacesRegExp = /^ *(?!\s).*$/, // leading spaces without leading tabs
+				spacesLeadingRegExp = /^( *).*$/
 			;
 
 			switch(options.indentation) {
 				case 'tabs':
 					if(!tabsRegExp.test(line)) {
-						//indentation failed...
+						// indentation failed...
 						return formatMessage(index + 1, MESSAGES.INDENTATION_TABS);
 					}
 					break;
 
 				case 'spaces':
 					if(!spacesRegExp.test(line)) {
-						//indentation failed...
+						// indentation failed...
 						return formatMessage(index + 1, MESSAGES.INDENTATION_SPACES);
 					} else {
-						//indentation correct, is amount of spaces correct?
+						// indentation correct, is amount of spaces correct?
 						if(typeof options.spaces === 'number') {
-							matchSpaces = line.match(spacesLeadingRegExp);
-							if(matchSpaces.length > 1 && matchSpaces[1].length % options.spaces !== 0) {
+							if(line.match(spacesLeadingRegExp)[1].length % options.spaces !== 0) {
 								return formatMessage(index + 1, MESSAGES.INDENTATION_SPACES_AMOUNT);
 							}
 						}
@@ -102,12 +100,12 @@ module.exports = function(grunt) {
 				index = lines.length - 1
 			;
 
-			//check last line:
+			// check last line:
 			if(lines[index].length > 0) {
 				return formatMessage(index + 1, MESSAGES.NEWLINE);
 			}
 
-			//check line before last line:
+			// check line before last line:
 			if(lines[index - 1].length === 0) {
 				return formatMessage(index, MESSAGES.NEWLINE_AMOUNT);
 			}
