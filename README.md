@@ -95,4 +95,4 @@ Run `grunt` to lint and run the tests.
 
 ## License
 
-[LICENSE](MIT)
+[LICENSE (MIT)](LICENSE)
