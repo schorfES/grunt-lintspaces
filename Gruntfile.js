@@ -39,19 +39,46 @@ module.exports = function(grunt) {
 		lintspaces: {
 			newline_okay: {
 				src: ['tests/files/newline_okay.txt'],
-				options: { newline: true }
+				options: {
+					newline: true
+				}
 			},
 			newline_missing: {
 				src: ['tests/files/newline_missing.txt'],
-				options: { newline: true }
+				options: {
+					newline: true
+				}
 			},
 			newlines_toomuch: {
 				src: ['tests/files/newline_toomuch.txt'],
-				options: { newline: true }
+				options: {
+					newline: true
+				}
 			},
 			trailingspaces: {
 				src: ['tests/files/trailingspaces.txt'],
-				options: { trailingspaces: true }
+				options: {
+					trailingspaces: true
+				}
+			},
+			indentation_tabs: {
+				src: ['tests/files/indentation_tabs.txt'],
+				options: {
+					indentation: 'tabs'
+				}
+			},
+			indentation_spaces: {
+				src: ['tests/files/indentation_spaces.txt'],
+				options: {
+					indentation: 'spaces'
+				}
+			},
+			indentation_spaces_3: {
+				src: ['tests/files/indentation_spaces.txt'],
+				options: {
+					indentation: 'spaces',
+					spaces: 3
+				}
 			}
 		}
 	});
