@@ -57,6 +57,11 @@ Tests for correct indentation using tabs or spaces. Default value is `false`. To
 
 If the indentation option is set to `'spaces'`, there is also the possibility to set the amount of spaces per indentation using the `spaces` option. Default value is `4`.
 
+```javascript
+	indentation: 'spaces',
+	spaces: 2
+```
+
 ## Configuration Example
 
 ```javascript
