@@ -48,6 +48,10 @@ module.exports = function(grunt) {
 			newlines_toomuch: {
 				src: ['tests/files/newline_toomuch.txt'],
 				options: { newline: true }
+			},
+			trailingspaces: {
+				src: ['tests/files/trailingspaces.txt'],
+				options: { trailingspaces: true }
 			}
 		}
 	});
