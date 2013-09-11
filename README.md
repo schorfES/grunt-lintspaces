@@ -8,7 +8,7 @@ _If you haven't used [grunt](http://gruntjs.com/) before, be sure to check out t
 From the same directory as your project's Gruntfile and package.json, install this plugin with the following command:
 
 ```bash
-npm install git://github.com/schorfES/grunt-lintspaces --save-dev
+npm install grunt-lintspaces --save-dev
 ```
 
 Once that's done, add this line to your project's Gruntfile:
