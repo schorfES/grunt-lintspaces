@@ -33,7 +33,7 @@ module.exports = function(grunt) {
 		},
 
 		nodeunit: {
-			all: ['tests/test.js']
+			all: ['tests/test_*.js']
 		},
 
 		lintspaces: {
