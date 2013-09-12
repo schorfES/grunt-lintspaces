@@ -7,7 +7,7 @@ module.exports = function(grunt) {
 			all: [
 				'Gruntfile.js',
 				'tasks/**/*.js',
-				'tests/*.js'
+				'tests/**/*.js'
 			],
 			options: {
 				'boss': true,
@@ -19,7 +19,8 @@ module.exports = function(grunt) {
 					'module': true,
 					'require': true,
 					'exports': true,
-					'__dirname': true
+					'__dirname': true,
+					'window': true
 				},
 				'immed': true,
 				'noarg': true,
@@ -78,6 +79,15 @@ module.exports = function(grunt) {
 				options: {
 					indentation: 'spaces',
 					spaces: 3
+				}
+			},
+			comments: {
+				src: ['tests/files/comments/*'],
+				options: {
+					indentation: 'tabs',
+					ignores: [
+						/\/\*[\s\S]*\*\//g
+					]
 				}
 			}
 		}
