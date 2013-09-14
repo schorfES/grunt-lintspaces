@@ -46,7 +46,8 @@ module.exports = function(grunt) {
 	});
 
 
-	/* Validation functions. */
+	/* Validation functions.
+	/* ---------------------------------------------------------------------- */
 	function checkIndentation(options, line, index) {
 		if(typeof options.indentation === 'string' && typeof line === 'string') {
 			var
@@ -107,6 +108,9 @@ module.exports = function(grunt) {
 		}
 	}
 
+
+	/* Ignores functions.
+	/* ---------------------------------------------------------------------- */
 	function updateIgnores(options) {
 		var ignores = [];
 		if(Array.isArray(options.ignores)) {
@@ -188,7 +192,8 @@ module.exports = function(grunt) {
 	}
 
 
-	/* Helper functions for formating output. */
+	/* Formating output.
+	/* ---------------------------------------------------------------------- */
 	function formatMessage(linenumber, message) {
 		return 'L'+ linenumber +': '+ message;
 	}
@@ -222,6 +227,9 @@ module.exports = function(grunt) {
 		}
 	}
 
+
+	/* Helper functions.
+	/* ---------------------------------------------------------------------- */
 	function extend(target) {
 		var sources = [].slice.call(arguments, 1);
 		sources.forEach(function (source) {
