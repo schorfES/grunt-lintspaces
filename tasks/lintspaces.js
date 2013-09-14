@@ -1,3 +1,7 @@
+var
+	buildinIgnorePatterns = require('./constants/ignorePatterns')
+;
+
 module.exports = function(grunt) {
 
 	var
@@ -24,6 +28,9 @@ module.exports = function(grunt) {
 			options = this.options(DEFAULTS),
 			output = ''
 		;
+
+		// replace ingnore strings with buildin patterns:
+		options.ignores = updateIgnores(options);
 
 		this.files.forEach(function(file) {
 			file.src.forEach(function(path) {
@@ -117,10 +124,29 @@ module.exports = function(grunt) {
 		}
 	}
 
+	function updateIgnores(options) {
+		var ignores = [];
+		if(Array.isArray(options.ignores)) {
+			options.ignores.forEach(function(ignore) {
+				if(typeof ignore === 'string' && typeof buildinIgnorePatterns[ignore] === 'object') {
+					ignores.push(buildinIgnorePatterns[ignore]);
+				} else if(typeof ignore === 'object' && typeof ignore.test === 'function') {
+					ignores.push(ignore);
+				}
+			});
+		}
+
+		if(ignores.length === 0) {
+			ignores = false;
+		}
+
+		return ignores;
+	}
+
 	function indexIgnoreLines(options, data) {
 		var ignoredLines = {};
 
-		if( Array.isArray(options.ignores) ) {
+		if(Array.isArray(options.ignores)) {
 
 			/* Loop all given regular expressions: */
 			options.ignores.forEach(function(expression) {

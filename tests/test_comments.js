@@ -6,8 +6,27 @@ var
 	}
 ;
 
+function run(test, cmd, ignores, finds) {
+	test.expect(ignores.length + finds.length);
+	exec(cmd, execOptions, function(error, stdout) {
+		ignores.forEach(function(line) {
+			test.equal(stdout.indexOf('L'+ line +':') > -1, false,
+				'this is a comment and should be ignored (L'+ line +')'
+			);
+		});
+
+		finds.forEach(function(line) {
+			test.equal(stdout.indexOf('L'+ line +':') > -1, true,
+				'this is not a comment (L'+ line +')'
+			);
+		});
+
+		test.done();
+	});
+}
+
 exports.tests = {
-	js: function(test) {
+	pattern: function(test) {
 		var
 			linesToIgnore = [
 				2, 3,
@@ -22,25 +41,53 @@ exports.tests = {
 			]
 		;
 
-		test.expect(linesToIgnore.length + linesToFind.length);
-		exec('grunt lintspaces:comments', execOptions, function(error, stdout) {
-			linesToIgnore.forEach(function(line) {
-				test.equal(
-					stdout.indexOf('L'+ line +':') > -1,
-					false,
-					'this is a comment and should be ignored'
-				);
-			});
+		run(test, 'grunt lintspaces:comments_pattern', linesToIgnore, linesToFind);
+	},
 
-			linesToFind.forEach(function(line) {
-				test.equal(
-					stdout.indexOf('L'+ line +':') > -1,
-					true,
-					'this is not a comment'
-				);
-			});
+	buildinJs: function(test) {
+		var
+			linesToIgnore = [
+				2, 3,
+				11, 12, 13, 14, 15, 16,
+				29, 30, 33, 34, 35, 36, 37, 38, 39,
+				42, 43, 44
+			],
+			linesToFind = [
+				32,
+				46,
+				48
+			]
+		;
 
-			test.done();
-		});
+		run(test, 'grunt lintspaces:comments_buildin_js', linesToIgnore, linesToFind);
+	},
+
+	buildinPy: function(test) {
+		var
+			linesToIgnore = [
+				2, 3, 4,
+				7, 8, 9
+			],
+			linesToFind = [
+				12
+			]
+		;
+
+		run(test, 'grunt lintspaces:comments_buildin_py', linesToIgnore, linesToFind);
+	},
+
+	buildinXml: function(test) {
+		var
+			linesToIgnore = [
+				4, 5, 6, 7,
+				9, 10, 11
+			],
+			linesToFind = [
+				14,
+				16
+			]
+		;
+
+		run(test, 'grunt lintspaces:comments_buildin_xml', linesToIgnore, linesToFind);
 	}
 };

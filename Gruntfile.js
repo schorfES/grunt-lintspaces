@@ -81,14 +81,36 @@ module.exports = function(grunt) {
 					spaces: 3
 				}
 			},
-			comments: {
-				src: ['tests/files/comments/*'],
+			comments_pattern: {
+				src: ['tests/files/comments/comments.js'],
 				options: {
 					indentation: 'tabs',
 					ignores: [
 						/'''[\s\S]*?'''/g, //Python
-						/\/\*[\s\S]*?\*\//g //Javascript, Java, AS3 etc.
+						/\/\*[\s\S]*?\*\//g //C, JavaScript, Java, AS3 etc.
 					]
+				}
+			},
+			comments_buildin_js: {
+				src: ['tests/files/comments/comments.js'],
+				options: {
+					indentation: 'tabs',
+					ignores: ['js-comments']
+				}
+			},
+			comments_buildin_py: {
+				src: ['tests/files/comments/comments.py'],
+				options: {
+					indentation: 'spaces',
+					spaces: 4,
+					ignores: ['python-comments']
+				}
+			},
+			comments_buildin_xml: {
+				src: ['tests/files/comments/comments.xml'],
+				options: {
+					indentation: 'tabs',
+					ignores: ['xml-comments']
 				}
 			}
 		}
