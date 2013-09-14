@@ -86,7 +86,8 @@ module.exports = function(grunt) {
 				options: {
 					indentation: 'tabs',
 					ignores: [
-						/\/\*[\s\S]*\*\//g
+						/'''[\s\S]*?'''/g, //Python
+						/\/\*[\s\S]*?\*\//g //Javascript, Java, AS3 etc.
 					]
 				}
 			}

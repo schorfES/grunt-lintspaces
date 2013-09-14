@@ -8,67 +8,37 @@ var
 
 exports.tests = {
 	js: function(test) {
-		test.expect(1);
-		exec('grunt lintspaces:newline_okay', execOptions, function(error, stdout) {
-			test.equal(
-				stdout.indexOf('L2') > -1,
-				false,
-				'this is a comment'
-			);
+		var
+			linesToIgnore = [
+				2, 3,
+				11, 12, 13, 14, 15, 16,
+				29, 30, 33, 34, 35, 36, 37, 38, 39,
+				42, 43, 44
+			],
+			linesToFind = [
+				32,
+				46,
+				48
+			]
+		;
 
-			test.equal(
-				stdout.indexOf('L3') > -1,
-				false,
-				'this is a comment'
-			);
+		test.expect(linesToIgnore.length + linesToFind.length);
+		exec('grunt lintspaces:comments', execOptions, function(error, stdout) {
+			linesToIgnore.forEach(function(line) {
+				test.equal(
+					stdout.indexOf('L'+ line +':') > -1,
+					false,
+					'this is a comment and should be ignored'
+				);
+			});
 
-			test.equal(
-				stdout.indexOf('L10') > -1,
-				false,
-				'this is a comment'
-			);
-
-			test.equal(
-				stdout.indexOf('L16') > -1,
-				false,
-				'this is a comment'
-			);
-
-			test.equal(
-				stdout.indexOf('L18') > -1,
-				false,
-				'this is a comment'
-			);
-
-			test.equal(
-				stdout.indexOf('L19') > -1,
-				false,
-				'this is a comment'
-			);
-
-			test.equal(
-				stdout.indexOf('L20') > -1,
-				false,
-				'this is a comment'
-			);
-
-			test.equal(
-				stdout.indexOf('L22') > -1,
-				true,
-				'this is an invalid comment'
-			);
-
-			test.equal(
-				stdout.indexOf('L26') > -1,
-				true,
-				'this is an invalid comment'
-			);
-
-			test.equal(
-				stdout.indexOf('L28') > -1,
-				true,
-				'this is an invalid comment'
-			);
+			linesToFind.forEach(function(line) {
+				test.equal(
+					stdout.indexOf('L'+ line +':') > -1,
+					true,
+					'this is not a comment'
+				);
+			});
 
 			test.done();
 		});
