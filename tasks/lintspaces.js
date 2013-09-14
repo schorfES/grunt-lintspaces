@@ -1,27 +1,10 @@
 var
-	buildinIgnorePatterns = require('./constants/ignorePatterns')
+	DEFAULTS = require('./constants/defaults'),
+	MESSAGES = require('./constants/messages'),
+	PATTERNS = require('./constants/ignorePatterns')
 ;
 
 module.exports = function(grunt) {
-
-	var
-		DEFAULTS = {
-			encoding: 'utf8',
-			newline: false,
-			indentation: false, // 'tabs' or 'spaces' or false
-			spaces: 4, // amount of spaces when 'indentation' is set to 'spaces'
-			trailingspaces: false,
-			ignores: false
-		},
-		MESSAGES = {
-			INDENTATION_TABS: 'no correct indentation with tabs.',
-			INDENTATION_SPACES: 'no correct indentation with spaces.',
-			INDENTATION_SPACES_AMOUNT: 'incorrect amout of spaces as indentation.',
-			TRAILINGSPACES: 'trailing spaces found.',
-			NEWLINE: 'no newline at end of file.',
-			NEWLINE_AMOUNT: 'too many new lines at end of file.'
-		}
-	;
 
 	grunt.registerMultiTask('lintspaces', 'Checking spaces', function() {
 		var
@@ -128,8 +111,8 @@ module.exports = function(grunt) {
 		var ignores = [];
 		if(Array.isArray(options.ignores)) {
 			options.ignores.forEach(function(ignore) {
-				if(typeof ignore === 'string' && typeof buildinIgnorePatterns[ignore] === 'object') {
-					ignores.push(buildinIgnorePatterns[ignore]);
+				if(typeof ignore === 'string' && typeof PATTERNS[ignore] === 'object') {
+					ignores.push(PATTERNS[ignore]);
 				} else if(typeof ignore === 'object' && typeof ignore.test === 'function') {
 					ignores.push(ignore);
 				}
