@@ -112,6 +112,12 @@ module.exports = function(grunt) {
 					indentation: 'tabs',
 					ignores: ['xml-comments']
 				}
+			},
+			directory: {
+				src: ['tests/files'],
+				options: {
+					indentation: 'tabs'
+				}
 			}
 		}
 	});

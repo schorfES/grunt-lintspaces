@@ -17,28 +17,30 @@ module.exports = function(grunt) {
 
 		this.files.forEach(function(file) {
 			file.src.forEach(function(path) {
-				var
-					data = grunt.file.read(path, options.encoding),
-					ignoredLines = indexIgnoreLines(options, data),
-					lines = data.split('\n'),
-					warnings = []
-				;
+				if(grunt.file.isFile(path)) {
+					var
+						data = grunt.file.read(path, options.encoding),
+						ignoredLines = indexIgnoreLines(options, data),
+						lines = data.split('\n'),
+						warnings = []
+					;
 
-				lines.forEach(function(line, index) {
-					if(!ignoredLines[index]) {
-						// check indentation:
-						pushWarning(warnings, checkIndentation(options, line, index));
-					}
+					lines.forEach(function(line, index) {
+						if(!ignoredLines[index]) {
+							// check indentation:
+							pushWarning(warnings, checkIndentation(options, line, index));
+						}
 
-					// check trailingspaces:
-					pushWarning(warnings, checkTrailingspaces(options, line, index));
-				});
+						// check trailingspaces:
+						pushWarning(warnings, checkTrailingspaces(options, line, index));
+					});
 
-				// check newline at end of file:
-				pushWarning(warnings, checkNewline(options, lines));
+					// check newline at end of file:
+					pushWarning(warnings, checkNewline(options, lines));
 
-				// print found warning for file
-				output += formatWarnings(options, path, warnings);
+					// print found warning for file
+					output += formatWarnings(options, path, warnings);
+				}
 			});
 		});
 
