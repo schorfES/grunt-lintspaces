@@ -94,6 +94,8 @@ _(build in strings and userdefined regular expressions are mixable in the `ignor
 	]
 ```
 
+**Feel free to contribute some new regular expressions as build in!**
+
 ## Configuration Example
 
 ```javascript
