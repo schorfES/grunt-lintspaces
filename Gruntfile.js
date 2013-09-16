@@ -38,6 +38,17 @@ module.exports = function(grunt) {
 		},
 
 		lintspaces: {
+			self: {
+				src: [
+					'Gruntfile.js',
+					'tasks/**/*.js'
+				],
+				options: {
+					newline: true,
+					trailingspaces: true,
+					indentation: 'tabs'
+				}
+			},
 			newline_okay: {
 				src: ['tests/files/newline_okay.txt'],
 				options: {
@@ -133,7 +144,8 @@ module.exports = function(grunt) {
 	]);
 
 	grunt.registerTask('validate', [
-		'jshint'
+		'jshint',
+		'lintspaces:self'
 	]);
 
 	grunt.registerTask('default', [
