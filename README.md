@@ -62,6 +62,38 @@ If the indentation option is set to `'spaces'`, there is also the possibility to
 	spaces: 2
 ```
 
+##### ignores option
+
+Use the `ignores` option when special lines such as comments should be ignored. Provide an array of regular expressions to the `ignores` property.
+
+```javascript
+	ignores: [
+		/\/\*[\s\S]*?\*\//g,
+		/foo bar/g
+	]
+```
+
+There are some _**build in**_ ignores for comments which you can apply by using these strings:
+
+* 'js-comments'
+* 'c-comments'
+* 'java-comments'
+* 'as-comments'
+* 'xml-comments'
+* 'html-comments'
+* 'python-comments'
+* 'ruby-comments'
+* 'applescript-comments'
+
+_(build in strings and userdefined regular expressions are mixable in the `ignores` array)_
+
+```javascript
+	ignores: [
+		'js-comments',
+		/foo bar/g
+	]
+```
+
 ## Configuration Example
 
 ```javascript
@@ -84,7 +116,8 @@ lintspaces: {
 		options: {
 			newline: true,
 			trailingspaces: true,
-			indentation: 'tabs'
+			indentation: 'tabs',
+			ignores: ['js-comments'	]
 		}
 	}
 }
