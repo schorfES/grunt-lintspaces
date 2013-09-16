@@ -1,7 +1,7 @@
 {
   "name": "grunt-lintspaces",
   "description": "A Grunt task for checking spaces in files",
-  "version": "0.2.2",
+  "version": "0.2.201",
   "repository": {
     "type": "git",
     "url": "https://github.com/schorfES/grunt-lintspaces.git"
@@ -21,6 +21,14 @@
     "grunt-contrib-nodeunit": "~0.2.0"
   },
   "keywords": [
-    "gruntplugin"
+    "gruntplugin",
+    "validation",
+    "lint",
+    "spaces",
+    "trailingspaces",
+    "indent",
+    "indentation",
+    "newlines",
+    "eof"
   ]
 }
