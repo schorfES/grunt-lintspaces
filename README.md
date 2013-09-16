@@ -119,13 +119,13 @@ lintspaces: {
 			newline: true,
 			trailingspaces: true,
 			indentation: 'tabs',
-			ignores: ['js-comments'	]
+			ignores: ['js-comments']
 		}
 	}
 }
 ```
 
-## Tests
+## Tests & Validation
 Run `grunt` to lint and run the tests.
 
 ## License
