@@ -9,7 +9,8 @@ module.exports = function(grunt) {
 	grunt.registerMultiTask('lintspaces', 'Checking spaces', function() {
 		var
 			options = this.options(DEFAULTS),
-			output = ''
+			output = '',
+			processedFiles = 0
 		;
 
 		// replace ingnore strings with buildin patterns:
@@ -38,13 +39,14 @@ module.exports = function(grunt) {
 					// check newline at end of file:
 					pushWarning(warnings, checkNewline(options, lines));
 
-					// print found warning for file
+					// save found warning(s) for file
 					output += formatWarnings(options, path, warnings);
+					processedFiles++;
 				}
 			});
 		});
 
-		printOutput(output);
+		printOutput(output, processedFiles);
 	});
 
 
@@ -221,11 +223,13 @@ module.exports = function(grunt) {
 		return msg;
 	}
 
-	function printOutput(output) {
+	function printOutput(output, amount) {
+		var fileInfo = amount +' file'+ ((amount > 1) ? 's' : '') +' checked.';
+
 		if(output.length > 0) {
-			grunt.fail.warn(output +'\n');
+			grunt.fail.warn(output +'\n')+ fileInfo +'\n';
 		} else {
-			grunt.log.ok('All spaces are correct.');
+			grunt.log.ok('All spaces are correct.\n'+ fileInfo +'\n');
 		}
 	}
 
