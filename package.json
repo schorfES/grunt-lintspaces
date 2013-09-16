@@ -29,6 +29,7 @@
     "indent",
     "indentation",
     "newlines",
-    "eof"
+    "eof",
+    "eol"
   ]
 }
