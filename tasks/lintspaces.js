@@ -143,7 +143,7 @@ module.exports = function(grunt) {
 			options.ignores.forEach(function(expression) {
 				var
 					lines = data,
-					matches = data.match(expression),
+					matches = data.match(expression) || [],
 					expressionIgnores = {},
 					expressionIgnoresCount = 0
 				;

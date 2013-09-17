@@ -124,6 +124,16 @@ module.exports = function(grunt) {
 					ignores: ['xml-comments']
 				}
 			},
+			comments_nomatches: {
+				src: ['tests/files/comments/comments.nomatches'],
+				options: {
+					indentation: 'tabs',
+					ignores: [
+						'js-comments',
+						'html-comments'
+					]
+				}
+			},
 			directory: {
 				src: ['tests/files'],
 				options: {

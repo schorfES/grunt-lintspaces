@@ -89,5 +89,16 @@ exports.tests = {
 		;
 
 		run(test, 'grunt lintspaces:comments_buildin_xml', linesToIgnore, linesToFind);
+	},
+
+	nomatches: function(test) {
+		test.expect(1);
+		exec('grunt lintspaces:comments_nomatches', execOptions, function(error, stdout) {
+			test.equal(stdout.indexOf('All spaces are correct.') > -1, true,
+				'There is an error'
+			);
+
+			test.done();
+		});
 	}
 };
