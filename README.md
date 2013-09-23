@@ -103,7 +103,7 @@ lintspaces: {
 	all: {
 		src: [
 			'**/*'
-		]
+		],
 		options: {
 			newline: true,
 			trailingspaces: true,
@@ -114,7 +114,7 @@ lintspaces: {
 	javascript: {
 		src: [
 			'js/src/**/*.js'
-		]
+		],
 		options: {
 			newline: true,
 			trailingspaces: true,
