@@ -5,6 +5,7 @@ var
 ;
 
 module.exports = function(grunt) {
+	var eol = /\r?\n/;
 
 	grunt.registerMultiTask('lintspaces', 'Checking spaces', function() {
 		var
@@ -22,7 +23,7 @@ module.exports = function(grunt) {
 					var
 						data = grunt.file.read(path, options.encoding),
 						ignoredLines = indexIgnoreLines(options, data),
-						lines = data.split('\n'),
+						lines = data.split(eol),
 						warnings = []
 					;
 
@@ -152,19 +153,19 @@ module.exports = function(grunt) {
 
 					/* Only perform an action when match has more
 					/* than one line */
-					if(match.indexOf('\n') > -1) {
+					if(eol.test(match)) {
 						var
 							index = 0,
 							removedAt = 0,
 							removedLines = 0,
-							oldLines = lines.split('\n'),
+							oldLines = lines.split(eol),
 							newLines
 						;
 
 						/* remove match from 'lines' so it can't match for
 						/* any other 'match' from this expression: */
 						lines = lines.replace(match, '');
-						newLines = lines.split('\n');
+						newLines = lines.split(eol);
 
 						/* Find the first line which isn't equal to the
 						/* original lines to get starting line of match: */
