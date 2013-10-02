@@ -141,54 +141,28 @@ module.exports = function(grunt) {
 
 			/* Loop all given regular expressions: */
 			options.ignores.forEach(function(expression) {
-				var
-					lines = data,
-					matches = data.match(expression) || [],
-					expressionIgnores = {},
-					expressionIgnoresCount = 0
-				;
+
+				var matches = data.match(expression) || [];
 
 				matches.forEach(function(match) {
-
 					/* Only perform an action when match has more
 					/* than one line */
-					if(match.indexOf('\n') > -1) {
-						var
-							index = 0,
-							removedAt = 0,
-							removedLines = 0,
-							oldLines = lines.split('\n'),
-							newLines
-						;
-
-						/* remove match from 'lines' so it can't match for
-						/* any other 'match' from this expression: */
-						lines = lines.replace(match, '');
-						newLines = lines.split('\n');
-
-						/* Find the first line which isn't equal to the
-						/* original lines to get starting line of match: */
-						while(index < newLines.length && newLines[index] === oldLines[index]) {
-							index++;
-						}
-
-						/* when a starting line was found, loop as long as
-						/* possible over irregular lines to find all lines to
-						/* ignore and list them: */
-						removedAt = index + 1;
-						while(	removedAt < oldLines.length &&
-								removedAt < newLines.length &&
-								oldLines[removedAt] !== newLines[index + 1]) {
-							expressionIgnores[removedAt + expressionIgnoresCount] = true;
-							removedLines++;
-							removedAt++;
-						}
-
-						expressionIgnoresCount += removedLines;
+					if (eol.test(match)) {
+						/* Fake replace cycle */
+						data.replace(match, function(matched) {
+							var args = Array.prototype.slice.call(arguments);
+							args.pop(); // last arg is whole string
+							var offset = args.pop(), // matched string start index
+								substr = data.slice(0, offset), // slice source data from beginning to matched string start index
+								secondLineIndex = substr.split(eol).length, // counting substring EOLs: index for second line of matched string
+								totalLines = matched.split(eol).length; // counting matched string EOLs
+							while ((totalLines -= 1) > 0) {
+								ignoredLines[secondLineIndex + totalLines -1] = true;
+							}
+							return matched;
+						});
 					}
 				});
-
-				ignoredLines = extend(ignoredLines, expressionIgnores);
 			});
 		}
 
