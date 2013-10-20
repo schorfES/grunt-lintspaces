@@ -142,54 +142,49 @@ module.exports = function(grunt) {
 
 			/* Loop all given regular expressions: */
 			options.ignores.forEach(function(expression) {
-				var
-					lines = data,
-					matches = data.match(expression) || [],
-					expressionIgnores = {},
-					expressionIgnoresCount = 0
-				;
+
+				var matches = data.match(expression) || [];
 
 				matches.forEach(function(match) {
 
 					/* Only perform an action when match has more
 					/* than one line */
-					if(eol.test(match)) {
-						var
-							index = 0,
-							removedAt = 0,
-							removedLines = 0,
-							oldLines = lines.split(eol),
-							newLines
-						;
+					if (eol.test(match)) {
 
-						/* remove match from 'lines' so it can't match for
-						/* any other 'match' from this expression: */
-						lines = lines.replace(match, '');
-						newLines = lines.split(eol);
+						/* Use fake replace cycle to find indices of all
+						/* lines to be ignored. Return unchanged match. */
+						data.replace(match, function(matched) {
+							var
+								args,
+								indexOfMatch,
+								indexOfSecondLine,
+								totalLines
+							;
 
-						/* Find the first line which isn't equal to the
-						/* original lines to get starting line of match: */
-						while(index < newLines.length && newLines[index] === oldLines[index]) {
-							index++;
-						}
+							// last argument is whole string, remove it:
+							args = Array.prototype.slice.call(arguments);
+							args.pop();
 
-						/* when a starting line was found, loop as long as
-						/* possible over irregular lines to find all lines to
-						/* ignore and list them: */
-						removedAt = index + 1;
-						while(	removedAt < oldLines.length &&
-								removedAt < newLines.length &&
-								oldLines[removedAt] !== newLines[index + 1]) {
-							expressionIgnores[removedAt + expressionIgnoresCount] = true;
-							removedLines++;
-							removedAt++;
-						}
+							// matched string start index:
+							indexOfMatch = args.pop();
 
-						expressionIgnoresCount += removedLines;
+							// slice source data from beginning to matched
+							// string start index to find index of second
+							// line to be ignored:
+							indexOfSecondLine = data.slice(0, indexOfMatch).split(eol).length;
+							totalLines = matched.split(eol).length;
+
+							//Count and store lines:
+							while ((totalLines -= 1) > 0) {
+								ignoredLines[indexOfSecondLine + totalLines - 1] = true;
+							}
+
+							//Return unchanged match:
+							return matched;
+						});
+
 					}
 				});
-
-				ignoredLines = extend(ignoredLines, expressionIgnores);
 			});
 		}
 
@@ -232,18 +227,5 @@ module.exports = function(grunt) {
 		} else {
 			grunt.log.ok('All spaces are correct.\n'+ fileInfo +'\n');
 		}
-	}
-
-
-	/* Helper functions.
-	/* ---------------------------------------------------------------------- */
-	function extend(target) {
-		var sources = [].slice.call(arguments, 1);
-		sources.forEach(function (source) {
-			for (var prop in source) {
-				target[prop] = source[prop];
-			}
-		});
-		return target;
 	}
 };
