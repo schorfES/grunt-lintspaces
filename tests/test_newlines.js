@@ -1,4 +1,5 @@
 var
+	MESSAGES = require('./../tasks/constants/messages'),
 	path = require('path'),
 	exec = require('child_process').exec,
 	execOptions = {
@@ -11,7 +12,7 @@ exports.tests = {
 		test.expect(1);
 		exec('grunt lintspaces:newline_okay', execOptions, function(error, stdout) {
 			test.equal(
-				stdout.indexOf('All spaces are correct.') > -1,
+				stdout.indexOf(MESSAGES.PASSED_LINTING.replace('{a}', '')) > -1,
 				true,
 				'newlines are fine.'
 			);
