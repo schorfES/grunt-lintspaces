@@ -58,7 +58,10 @@ module.exports = function(grunt) {
 			var
 				tabsRegExp = /^\t*(?!\s).*$/, // leading tabs without leading spaces
 				spacesRegExp = /^ *(?!\s).*$/, // leading spaces without leading tabs
-				spacesLeadingRegExp = /^( *).*$/
+				spacesLeadingRegExp = /^( *).*$/,
+				spacesExpected,
+				indent,
+				message
 			;
 
 			switch(options.indentation) {
@@ -76,17 +79,13 @@ module.exports = function(grunt) {
 					} else {
 						// indentation correct, is amount of spaces correct?
 						if(typeof options.spaces === 'number') {
-							var indent = line.match(spacesLeadingRegExp)[1].length;
+							indent = line.match(spacesLeadingRegExp)[1].length;
 							if(indent % options.spaces !== 0) {
-								var
-									makeMultiple = function(input) {
-										// Round up or down the input based on the spaces that we configured
-										return Math.round(input/options.spaces) * options.spaces;
-									},
-									message = MESSAGES.INDENTATION_SPACES_AMOUNT
-										.replace('{a}', makeMultiple(indent))
-										.replace('{b}', indent)
-								;
+								// indentation incorrect, create message:
+								spacesExpected = Math.round(indent/options.spaces) * options.spaces;
+								message = MESSAGES.INDENTATION_SPACES_AMOUNT
+									.replace('{a}', spacesExpected)
+									.replace('{b}', indent);
 								return formatMessage(index + 1, message);
 							}
 						}
