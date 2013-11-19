@@ -230,13 +230,13 @@ module.exports = function(grunt) {
 	}
 
 	function printOutput(output, amount) {
-		var fileInfo = amount +' file'+ ((amount > 1) ? 's' : '') +' checked.';
+		var fileInfo = amount +' file'+ ((amount > 1) ? 's' : '');
 
 		if(output.length > 0) {
 			grunt.log.writeln(output);
-			grunt.fail.warn('Formatting check failed.');
+			grunt.fail.warn(MESSAGES.FAILED_LINTING);
 		} else {
-			grunt.log.ok('All spaces are correct.\n'+ fileInfo +'\n');
+			grunt.log.ok(MESSAGES.PASSED_LINTING.replace('{a}', fileInfo));
 		}
 	}
 };
