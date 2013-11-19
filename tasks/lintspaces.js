@@ -58,7 +58,10 @@ module.exports = function(grunt) {
 			var
 				tabsRegExp = /^\t*(?!\s).*$/, // leading tabs without leading spaces
 				spacesRegExp = /^ *(?!\s).*$/, // leading spaces without leading tabs
-				spacesLeadingRegExp = /^( *).*$/
+				spacesLeadingRegExp = /^( *).*$/,
+				spacesExpected,
+				indent,
+				message
 			;
 
 			switch(options.indentation) {
@@ -76,8 +79,14 @@ module.exports = function(grunt) {
 					} else {
 						// indentation correct, is amount of spaces correct?
 						if(typeof options.spaces === 'number') {
-							if(line.match(spacesLeadingRegExp)[1].length % options.spaces !== 0) {
-								return formatMessage(index + 1, MESSAGES.INDENTATION_SPACES_AMOUNT);
+							indent = line.match(spacesLeadingRegExp)[1].length;
+							if(indent % options.spaces !== 0) {
+								// indentation incorrect, create message:
+								spacesExpected = Math.round(indent/options.spaces) * options.spaces;
+								message = MESSAGES.INDENTATION_SPACES_AMOUNT
+									.replace('{a}', spacesExpected)
+									.replace('{b}', indent);
+								return formatMessage(index + 1, message);
 							}
 						}
 					}
@@ -195,7 +204,7 @@ module.exports = function(grunt) {
 	/* Formating output.
 	/* ---------------------------------------------------------------------- */
 	function formatMessage(linenumber, message) {
-		return 'L'+ linenumber +': '+ message;
+		return 'L'+ linenumber +': '+ message.yellow;
 	}
 
 	function pushWarning(warnings, warning) {
@@ -210,10 +219,11 @@ module.exports = function(grunt) {
 		;
 
 		if(warnings.length > 0) {
-			msg = '\nErrors found at '+ path;
+			msg = 'ERROR: '.red + path.underline;
 			warnings.forEach(function(warning) {
-				msg += '\n\t'+ warning;
+				msg += '\n'+ warning;
 			});
+			msg += '\n';
 		}
 
 		return msg;
@@ -223,7 +233,8 @@ module.exports = function(grunt) {
 		var fileInfo = amount +' file'+ ((amount > 1) ? 's' : '') +' checked.';
 
 		if(output.length > 0) {
-			grunt.fail.warn(output +'\n')+ fileInfo +'\n';
+			grunt.log.writeln(output);
+			grunt.fail.warn('Formatting check failed.');
 		} else {
 			grunt.log.ok('All spaces are correct.\n'+ fileInfo +'\n');
 		}
