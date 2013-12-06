@@ -41,7 +41,8 @@ module.exports = function(grunt) {
 			self: {
 				src: [
 					'Gruntfile.js',
-					'tasks/**/*.js'
+					'tasks/**/*.js',
+					'tests/*.js'
 				],
 				options: {
 					newline: true,
