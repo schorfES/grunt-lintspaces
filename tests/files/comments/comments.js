@@ -46,4 +46,24 @@
 	 /* And this too. */
 
 	 test(); /* Aaaaand this too. */
+
+	bar = {
+
+		bar: {
+
+			/**
+			 * handles a static list filter (type == static) based on the defined mode
+			 * @private
+			 * @param    {jQuery.Event} event
+			 */
+			a1: 1
+
+			/**
+			 * handles a static list filter (type == static) based on the defined mode
+			 * @private
+			 * @param    {jQuery.Event} event
+			 */
+		}
+	};
+
 })();
