@@ -1,7 +1,9 @@
 var
 	DEFAULTS = require('./constants/defaults'),
 	MESSAGES = require('./constants/messages'),
-	PATTERNS = require('./constants/ignorePatterns')
+	PATTERNS = require('./constants/ignorePatterns'),
+	MAPPINGS = require('./constants/editorconfigMappings'),
+	editorconfig = require('editorconfig')
 ;
 
 module.exports = function(grunt) {
@@ -21,8 +23,9 @@ module.exports = function(grunt) {
 			file.src.forEach(function(path) {
 				if(grunt.file.isFile(path)) {
 					var
-						data = grunt.file.read(path, options.encoding),
-						ignoredLines = indexIgnoreLines(options, data),
+						config = getEditorconfigOptions(path, options),
+						data = grunt.file.read(path, config.encoding),
+						ignoredLines = indexIgnoreLines(config, data),
 						lines = data.split(eol),
 						warnings = []
 					;
@@ -30,18 +33,18 @@ module.exports = function(grunt) {
 					lines.forEach(function(line, index) {
 						if(!ignoredLines[index]) {
 							// check indentation:
-							pushWarning(warnings, checkIndentation(options, line, index));
+							pushWarning(warnings, checkIndentation(config, line, index));
 						}
 
 						// check trailingspaces:
-						pushWarning(warnings, checkTrailingspaces(options, line, index));
+						pushWarning(warnings, checkTrailingspaces(config, line, index));
 					});
 
 					// check newline at end of file:
-					pushWarning(warnings, checkNewline(options, lines));
+					pushWarning(warnings, checkNewline(config, lines));
 
 					// save found warning(s) for file
-					output += formatWarnings(options, path, warnings);
+					output += formatWarnings(config, path, warnings);
 					processedFiles++;
 				}
 			});
@@ -50,6 +53,37 @@ module.exports = function(grunt) {
 		printOutput(output, processedFiles);
 	});
 
+	/* Editorconfig functions.
+	/* ---------------------------------------------------------------------- */
+	function getEditorconfigOptions(file, options) {
+		if (typeof options.editorconfig === 'string') {
+			var config = editorconfig.parse(file, {config: options.editorconfig});
+			if (typeof config === 'object') {
+				options = mapEditorconfigOptions(options, config);
+			}
+		}
+
+		return options;
+	}
+
+	function mapEditorconfigOptions(options, config) {
+		var
+			key,
+			value
+		;
+
+		for (key in config) {
+			if (typeof MAPPINGS[key] === 'string') {
+				value = config[key];
+				if (key === 'indent_style') {
+					value = value + 's';
+				}
+				options[MAPPINGS[key]] = value;
+			}
+		}
+
+		return options;
+	}
 
 	/* Validation functions.
 	/* ---------------------------------------------------------------------- */

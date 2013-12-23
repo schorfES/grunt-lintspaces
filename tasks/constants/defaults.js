@@ -4,5 +4,6 @@ module.exports = {
 	indentation: false, // 'tabs' or 'spaces' or false
 	spaces: 4, // amount of spaces when 'indentation' is set to 'spaces'
 	trailingspaces: false,
-	ignores: false
+	ignores: false,
+	editorconfig: false
 };
