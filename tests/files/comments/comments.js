@@ -45,5 +45,11 @@
 
 	 /* And this too. */
 
+	/* This is a repeated one...
+	 * And should match as ignore twice */
+
+	/* This is a repeated one...
+	 * And should match as ignore twice */
+
 	 test(); /* Aaaaand this too. */
 })();

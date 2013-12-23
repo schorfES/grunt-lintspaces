@@ -38,7 +38,7 @@ exports.tests = {
 			linesToFind = [
 				32,
 				46,
-				48
+				54
 			]
 		;
 
@@ -56,7 +56,7 @@ exports.tests = {
 			linesToFind = [
 				32,
 				46,
-				48
+				54
 			]
 		;
 
@@ -85,7 +85,8 @@ exports.tests = {
 			],
 			linesToFind = [
 				14,
-				16
+				17,
+				19
 			]
 		;
 

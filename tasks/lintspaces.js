@@ -162,8 +162,9 @@ module.exports = function(grunt) {
 
 						/* Use fake replace cycle to find indices of all
 						/* lines to be ignored. Return unchanged match. */
-						data.replace(match, function(matched) {
+						data = data.replace(match, function(matched) {
 							var
+								index = 1,
 								args,
 								indexOfMatch,
 								indexOfSecondLine,
@@ -184,12 +185,15 @@ module.exports = function(grunt) {
 							totalLines = matched.split(eol).length;
 
 							//Count and store lines:
-							while ((totalLines -= 1) > 0) {
-								ignoredLines[indexOfSecondLine + totalLines - 1] = true;
+							while (index < totalLines) {
+								ignoredLines[indexOfSecondLine + index - 1] = true;
+								index++;
 							}
 
-							//Return unchanged match:
-							return matched;
+							// Fillup result with linebreaks and overwrite
+							// data string in case that the data string contains
+							// the current 'matched' more than once:
+							return Array(totalLines).join('\n');
 						});
 
 					}
