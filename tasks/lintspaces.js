@@ -57,9 +57,13 @@ module.exports = function(grunt) {
 	/* ---------------------------------------------------------------------- */
 	function getEditorconfigOptions(file, options) {
 		if (typeof options.editorconfig === 'string') {
-			var config = editorconfig.parse(file, {config: options.editorconfig});
-			if (typeof config === 'object') {
-				options = mapEditorconfigOptions(options, config);
+			if (grunt.file.isFile(options.editorconfig)) {
+				var config = editorconfig.parse(file, {config: options.editorconfig});
+				if (typeof config === 'object') {
+					options = mapEditorconfigOptions(options, config);
+				}
+			} else {
+				grunt.fail.warn(MESSAGES.EDITORCONFIG_NOTFOUND.replace('{a}', options.editorconfig));
 			}
 		}
 
