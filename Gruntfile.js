@@ -145,7 +145,14 @@ module.exports = function(grunt) {
 				src: ['tests/files/comments/comments.js'],
 				options: {
 					ignores: ['js-comments'],
-					editorconfig: '.editorconfig'
+					editorconfig: 'tests/files/.editorconfig'
+				}
+			},
+			editorconfig_notfound: {
+				src: ['tests/files/comments/comments.js'],
+				options: {
+					ignores: ['js-comments'],
+					editorconfig: 'path-doesnt-existis/.editorconfig'
 				}
 			}
 		}
