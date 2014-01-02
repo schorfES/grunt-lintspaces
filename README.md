@@ -96,6 +96,14 @@ _(build in strings and userdefined regular expressions are mixable in the `ignor
 
 **Feel free to contribute some new regular expressions as build in!**
 
+##### .editorconfig option
+
+It's possible to overwrite the default and given options by setting up a path to an external editorconfig file by unsing the `editorconfig`option. For a basic configuration of a _.editorconfig_ file check out the [EditorConfig Documentation](http://editorconfig.org/).
+
+```javascript
+	editorconfig: '.editorconfig'
+```
+
 ## Configuration Example
 
 ```javascript
@@ -120,6 +128,14 @@ lintspaces: {
 			trailingspaces: true,
 			indentation: 'tabs',
 			ignores: ['js-comments']
+		}
+	},
+	external: {
+		src: [
+			'**/*'
+		],
+		options: {
+			editorconfig: '.editorconfig'
 		}
 	}
 }
