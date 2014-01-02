@@ -104,6 +104,13 @@ It's possible to overwrite the default and given options by setting up a path to
 	editorconfig: '.editorconfig'
 ```
 
+The following .editorconfig values are supported:
+
+* `insert_final_newline` will check if a newline is set
+* `indent_style` will check the indentation
+* `indent_size` will check the amount of spaces
+* `trim_trailing_whitespace` will check for useless whitespaces
+
 ## Configuration Example
 
 ```javascript
