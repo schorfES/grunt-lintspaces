@@ -140,6 +140,20 @@ module.exports = function(grunt) {
 				options: {
 					indentation: 'tabs'
 				}
+			},
+			editorconfig: {
+				src: ['tests/files/comments/comments.js'],
+				options: {
+					ignores: ['js-comments'],
+					editorconfig: 'tests/files/.editorconfig'
+				}
+			},
+			editorconfig_notfound: {
+				src: ['tests/files/comments/comments.js'],
+				options: {
+					ignores: ['js-comments'],
+					editorconfig: 'path-doesnt-existis/.editorconfig'
+				}
 			}
 		}
 	});
