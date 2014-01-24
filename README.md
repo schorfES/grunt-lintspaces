@@ -3,7 +3,7 @@
 A Grunt task for checking spaces in files.
 
 ## Getting Started
-_If you haven't used [grunt](http://gruntjs.com/) before, be sure to check out the [Getting Started](https://github.com/cowboy/grunt/blob/master/docs/getting_started.md) guide._
+_If you haven't used [grunt](http://gruntjs.com/) before, be sure to check out the [Getting Started](http://gruntjs.com/getting-started) guide._
 
 From the same directory as your project's Gruntfile and package.json, install this plugin with the following command:
 
