@@ -47,7 +47,8 @@ module.exports = function(grunt) {
 				options: {
 					newline: true,
 					trailingspaces: true,
-					indentation: 'tabs'
+					indentation: 'tabs',
+					ignores: ['js-comments']
 				}
 			},
 			newline_okay: {

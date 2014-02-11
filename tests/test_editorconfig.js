@@ -1,5 +1,5 @@
 var
-	MESSAGES = require('./../tasks/constants/messages'),
+	MESSAGES = require('./../tasks/lintspaces/constants/messages'),
 	path = require('path'),
 	exec = require('child_process').exec,
 	execOptions = {
