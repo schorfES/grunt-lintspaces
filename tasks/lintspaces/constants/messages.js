@@ -7,6 +7,7 @@ module.exports = {
 	TRAILINGSPACES: 'Unexpected trailing spaces found.',
 	NEWLINE: 'Expected a newline at the end of the file.',
 	NEWLINE_AMOUNT: 'Unexpected additional newlines at the end of the file.',
-	NEWLINE_BLOCK: 'Maximum amount of newlines exceeded. Found {a} newlines, expected maximum is {b}.',
+	NEWLINE_MAXIMUM: 'Maximum amount of newlines exceeded. Found {a} newlines, expected maximum is {b}.',
+	NEWLINE_MAXIMUM_INVALIDVALUE: 'The value "{a}" for the maximum of newlines is invalid.',
 	EDITORCONFIG_NOTFOUND: 'The configfile "{a}" wasn\'t found.'
 };

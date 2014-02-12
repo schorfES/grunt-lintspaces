@@ -76,7 +76,7 @@ module.exports = function(grunt) {
 				src: ['tests/files/newline_toomuch.txt'],
 				options: {
 					newline: true,
-					newlineBlocks: 2
+					newlineMaximum: 2
 				}
 			},
 			trailingspaces: {
