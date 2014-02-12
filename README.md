@@ -31,12 +31,20 @@ This sets the path of the files to be checked.
 
 This controls how this task operate and should contain key:value pairs, see options below.
 
-##### newline option
+##### newline at end of file option
 
 Tests for newlines at the end of all files. Default value is `false`.
 
 ```javascript
 	newline: true
+```
+
+##### maximum newlines option
+
+Test for the maximum amount of newlines between code blocks. Default value is `false`. To enable this validation a number larger than `0` is expected.
+
+```javascript
+	newlineMaximum: 2
 ```
 
 ##### trailingspaces option
