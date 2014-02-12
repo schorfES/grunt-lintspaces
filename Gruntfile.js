@@ -37,6 +37,14 @@ module.exports = function(grunt) {
 			all: ['tests/test_*.js']
 		},
 
+		jscs: {
+			all: [
+				'Gruntfile.js',
+				'tasks/**/*.js',
+				'tests/**/*.js'
+			]
+		},
+
 		lintspaces: {
 			self: {
 				src: [
@@ -163,6 +171,7 @@ module.exports = function(grunt) {
 	grunt.loadTasks('tasks');
 	grunt.loadNpmTasks('grunt-contrib-jshint');
 	grunt.loadNpmTasks('grunt-contrib-nodeunit');
+	grunt.loadNpmTasks('grunt-jscs-checker');
 
 	// define tasks
 	grunt.registerTask('test', [
@@ -171,6 +180,7 @@ module.exports = function(grunt) {
 
 	grunt.registerTask('validate', [
 		'jshint',
+		'jscs',
 		'lintspaces:self'
 	]);
 

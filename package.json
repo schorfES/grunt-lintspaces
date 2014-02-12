@@ -18,7 +18,8 @@
   "devDependencies": {
     "grunt": "~0.4.1",
     "grunt-contrib-jshint": "~0.4.3",
-    "grunt-contrib-nodeunit": "~0.2.0"
+    "grunt-contrib-nodeunit": "~0.2.0",
+    "grunt-jscs-checker": "~0.2.6"
   },
   "peerDependencies": {
     "grunt": "~0.4.1"
