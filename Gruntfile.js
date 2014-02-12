@@ -79,6 +79,12 @@ module.exports = function(grunt) {
 					newlineMaximum: 2
 				}
 			},
+			newlines_amount_invalid: {
+				src: ['tests/files/newline_toomuch.txt'],
+				options: {
+					newlineMaximum: 0
+				}
+			},
 			trailingspaces: {
 				src: ['tests/files/trailingspaces.txt'],
 				options: {

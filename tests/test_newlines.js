@@ -60,5 +60,16 @@ exports.tests = {
 			);
 			test.done();
 		});
+	},
+
+	newlines_amount_invalid: function(test) {
+		test.expect(1);
+		exec('grunt lintspaces:newlines_amount_invalid', execOptions, function(error, stdout) {
+			var message = MESSAGES.NEWLINE_MAXIMUM_INVALIDVALUE.replace('{a}', '0');
+			test.equal(stdout.indexOf(message) > -1, true,
+				'A failure log message should appear when maximum newlines amount is less then 1.'
+			);
+			test.done();
+		});
 	}
 };
