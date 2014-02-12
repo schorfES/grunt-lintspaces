@@ -119,7 +119,7 @@ The following .editorconfig values are supported:
 * `indent_size` will check the amount of spaces
 * `trim_trailing_whitespace` will check for useless whitespaces
 
-## Configuration Example
+## Configuration Examples
 
 ```javascript
 lintspaces: {
@@ -129,6 +129,7 @@ lintspaces: {
 		],
 		options: {
 			newline: true,
+			newlineMaximum: 2,
 			trailingspaces: true,
 			indentation: 'spaces',
 			spaces: 2
