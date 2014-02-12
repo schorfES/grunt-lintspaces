@@ -62,7 +62,8 @@ module.exports = function(grunt) {
 			newline_okay: {
 				src: ['tests/files/newline_okay.txt'],
 				options: {
-					newline: true
+					newline: true,
+					newlineBlocks: 2
 				}
 			},
 			newline_missing: {
@@ -74,7 +75,8 @@ module.exports = function(grunt) {
 			newlines_toomuch: {
 				src: ['tests/files/newline_toomuch.txt'],
 				options: {
-					newline: true
+					newline: true,
+					newlineBlocks: 2
 				}
 			},
 			trailingspaces: {

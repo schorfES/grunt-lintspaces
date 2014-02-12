@@ -7,7 +7,8 @@ var
 	editorconfig = require('editorconfig'),
 	merge = require('merge'),
 
-	eol = /\r?\n/
+	eol = '\\r?\\n',
+	eolRegExp = new RegExp(eol)
 ;
 
 module.exports = (function() {
@@ -31,7 +32,8 @@ module.exports = (function() {
 				this._loadIgnores();
 
 				// Validate total file:
-				this._validateNewlines();
+				this._validateNewlineBlocks();
+				this._validateNewlinesEOF();
 
 				// Validate single lines:
 				this._lines.forEach(function(line, index) {
@@ -64,7 +66,7 @@ module.exports = (function() {
 
 		_loadFile: function() {
 			this._data = this._grunt.file.read(this._path, this._settings.encoding),
-			this._lines = this._data.split(eol);
+			this._lines = this._data.split(eolRegExp);
 		},
 
 		_loadSettings: function() {
@@ -148,7 +150,7 @@ module.exports = (function() {
 
 						// Only perform an action when match has more
 						// than one line:
-						if (eol.test(match)) {
+						if (eolRegExp.test(match)) {
 
 							// Use fake replace cycle to find indices of all
 							// lines to be ignored. Return unchanged match:
@@ -171,8 +173,8 @@ module.exports = (function() {
 								// slice source data from beginning to matched
 								// string start index to find index of second
 								// line to be ignored:
-								indexOfSecondLine = self._data.slice(0, indexOfMatch).split(eol).length;
-								totalLines = matched.split(eol).length;
+								indexOfSecondLine = self._data.slice(0, indexOfMatch).split(eolRegExp).length;
+								totalLines = matched.split(eolRegExp).length;
 
 								//Count and store lines:
 								while (index < totalLines) {
@@ -196,7 +198,58 @@ module.exports = (function() {
 		 * Validation functions
 		 * ------------------------------------------------------------------ */
 
-		_validateNewlines: function() {
+		_validateNewlineBlocks: function() {
+			if (typeof this._settings.newlineBlocks === 'number') {
+				var
+					self = this;
+
+					// To grep all all blocks at the begin of a file
+					// which have at least 1 more new line than the defined
+					// criteria the expression for one or more newlines is
+					// appended:
+					newlinesAtBeginn = '^[' + eol + ']{'+ this._settings.newlineBlocks + '}' + eol + '+'
+
+					// Each block inside a file has an extra leading newline
+					// from the previous line above (+1). To grep all all blocks
+					// which have at least 1 more new line than the defined
+					// criteria the expression for one or more newlines is
+					// appended:
+					newlinesInFile = '[' + eol + ']{'+ (this._settings.newlineBlocks + 1) + '}' + eol + '+',
+
+					// Define function which is used as fake replace cycle to
+					// validate matches:
+					validate = function(match, offset, original) {
+						var
+							substring = original.substr(0, offset),
+							newlines = substring.match(new RegExp(eol, 'g')),
+							amount = match.match(new RegExp(eol, 'g')).length,
+							atLine = 0
+						;
+
+						// When current match is not at the beginning of a file,
+						// newlines is defined. In this case update variables:
+						if (newlines) {
+							atLine = newlines.length + 1;
+							amount = amount - 1;
+						}
+
+						self._logLine(
+							atLine + 1,
+							MESSAGES.NEWLINE_BLOCK
+								.replace('{a}', amount)
+								.replace('{b}', self._settings.newlineBlocks)
+						);
+
+						return original;
+					}
+				;
+
+				this._data.replace(new RegExp(newlinesAtBeginn, 'g'), validate);
+				this._data.replace(new RegExp(newlinesInFile, 'g'), validate);
+			}
+		},
+
+		_validateNewlinesEOF: function() {
 			if (this._settings.newline && this._lines.length > 1) {
 				var
 					index = this._lines.length - 1

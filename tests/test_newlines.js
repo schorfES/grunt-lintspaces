@@ -33,12 +33,30 @@ exports.tests = {
 	},
 
 	newlines_toomuch: function(test) {
-		test.expect(1);
+		test.expect(4);
 		exec('grunt lintspaces:newlines_toomuch', execOptions, function(error, stdout) {
 			test.equal(
-				stdout.indexOf('L11') > -1,
+				stdout.indexOf('L1') > -1,
 				true,
-				'toomany files at the end of file.'
+				'too many newlines in newline blocks at beginning of file'
+			);
+
+			test.equal(
+				stdout.indexOf('L8') > -1,
+				true,
+				'too many newlines in newline blocks in file'
+			);
+
+			test.equal(
+				stdout.indexOf('L17') > -1,
+				true,
+				'too many newlines in newline blocks in file'
+			);
+
+			test.equal(
+				stdout.indexOf('L31') > -1,
+				true,
+				'toomany lines at the end of file.'
 			);
 			test.done();
 		});
