@@ -234,12 +234,15 @@ module.exports = (function() {
 								amount = amount - 1;
 							}
 
-							self._logLine(
-								atLine + 1,
-								MESSAGES.NEWLINE_MAXIMUM
-									.replace('{a}', amount)
-									.replace('{b}', self._settings.newlineMaximum)
-							);
+							// Test if found lines are not in ignored lines:
+							if (!self._ignoredLines[atLine + 1]) {
+								self._logLine(
+									atLine + 1,
+									MESSAGES.NEWLINE_MAXIMUM
+										.replace('{a}', amount)
+										.replace('{b}', self._settings.newlineMaximum)
+								);
+							}
 
 							return original;
 						}
