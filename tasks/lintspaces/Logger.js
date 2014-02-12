@@ -21,7 +21,7 @@ module.exports = (function() {
 	};
 
 	Logger.prototype.logLine = function(path, linenumber, message) {
-		this._add(path, 'L'+ linenumber +': '+ message.yellow);
+		this._add(path, 'L' + linenumber + ': ' + message.yellow);
 	};
 
 	Logger.prototype.fail = function(message) {
@@ -49,7 +49,7 @@ module.exports = (function() {
 			this._grunt.log.ok(
 				MESSAGES.PASSED_LINTING.replace(
 					'{a}',
-					this._amountOfFiles +' file'+ ((this._amountOfFiles > 1) ? 's' : '')
+					this._amountOfFiles + ' file' + ((this._amountOfFiles > 1) ? 's' : '')
 				)
 			);
 		}

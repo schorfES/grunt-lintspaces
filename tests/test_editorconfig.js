@@ -11,14 +11,14 @@ function run(test, cmd, ignores, finds) {
 	test.expect(ignores.length + finds.length);
 	exec(cmd, execOptions, function(error, stdout) {
 		ignores.forEach(function(line) {
-			test.equal(stdout.indexOf('L'+ line +':') > -1, false,
-				'this is a comment and should be ignored (L'+ line +')'
+			test.equal(stdout.indexOf('L' + line + ':') > -1, false,
+				'this is a comment and should be ignored (L' + line + ')'
 			);
 		});
 
 		finds.forEach(function(line) {
-			test.equal(stdout.indexOf('L'+ line +':') > -1, true,
-				'this is not a comment (L'+ line +')'
+			test.equal(stdout.indexOf('L' + line + ':') > -1, true,
+				'this is not a comment (L' + line + ')'
 			);
 		});
 
@@ -50,7 +50,7 @@ exports.tests = {
 		exec('grunt lintspaces:editorconfig_notfound', function(error, stdout) {
 			var message = MESSAGES.EDITORCONFIG_NOTFOUND.replace('{a}', 'path-doesnt-existis/.editorconfig');
 			test.equal(stdout.indexOf(message) > 0, true,
-				'Wrong message for not found .editorconfig file. Expected was "'+ message +'".'
+				'Wrong message for not found .editorconfig file. Expected was "' + message + '".'
 			);
 			test.done();
 		});

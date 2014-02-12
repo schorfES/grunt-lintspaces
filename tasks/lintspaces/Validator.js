@@ -20,7 +20,7 @@ module.exports = (function() {
 
 	Validator.prototype.validate = function(path) {
 		var self = this;
-		if(this._grunt.file.isFile(path)) {
+		if (this._grunt.file.isFile(path)) {
 			// Load file, settings & ignores:
 			this._path = path;
 			this._loadSettings();
@@ -118,23 +118,23 @@ module.exports = (function() {
 		this._ignoredLines = {};
 
 		// Load ignore patterns:
-		if(Array.isArray(this._settings.ignores)) {
+		if (Array.isArray(this._settings.ignores)) {
 			this._settings.ignores.forEach(function(ignore) {
-				if(typeof ignore === 'string' && typeof PATTERNS[ignore] === 'object') {
+				if (typeof ignore === 'string' && typeof PATTERNS[ignore] === 'object') {
 					ignores.push(PATTERNS[ignore]);
-				} else if(typeof ignore === 'object' && typeof ignore.test === 'function') {
+				} else if (typeof ignore === 'object' && typeof ignore.test === 'function') {
 					ignores.push(ignore);
 				}
 			});
 		}
 
 		// When no patterns are defined, disable the following search for lines:
-		if(ignores.length === 0) {
+		if (ignores.length === 0) {
 			ignores = false;
 		}
 
 		// Index lines which match patterns, when available:
-		if(Array.isArray(ignores)) {
+		if (Array.isArray(ignores)) {
 
 			// Loop all given regular expressions:
 			ignores.forEach(function(expression) {
@@ -194,27 +194,27 @@ module.exports = (function() {
 	 * ---------------------------------------------------------------------- */
 
 	Validator.prototype._validateNewlines = function() {
-		if(this._settings.newline && this._lines.length > 1) {
+		if (this._settings.newline && this._lines.length > 1) {
 			var
 				index = this._lines.length - 1
 			;
 
 			// check last line:
-			if(this._lines[index].length > 0) {
+			if (this._lines[index].length > 0) {
 				this._logLine(index + 1, MESSAGES.NEWLINE);
 			}
 
 			// check line before last line:
-			if(this._lines[index - 1].length === 0) {
+			if (this._lines[index - 1].length === 0) {
 				this._logLine(index, MESSAGES.NEWLINE_AMOUNT);
 			}
 		}
 	};
 
 	Validator.prototype._validateTrailingspaces = function(line, index) {
-		if(this._settings.trailingspaces && typeof line === 'string') {
+		if (this._settings.trailingspaces && typeof line === 'string') {
 			var matchSpaces = line.match(/\s*$/);
-			if( matchSpaces.length > 0 && matchSpaces[0].length > 0) {
+			if (matchSpaces.length > 0 && matchSpaces[0].length > 0) {
 				this._logLine(index + 1, MESSAGES.TRAILINGSPACES);
 			}
 		}
@@ -234,25 +234,25 @@ module.exports = (function() {
 				message
 			;
 
-			switch(this._settings.indentation) {
+			switch (this._settings.indentation) {
 				case 'tabs':
-					if(!tabsRegExp.test(line)) {
+					if (!tabsRegExp.test(line)) {
 						// indentation failed...
 						return this._logLine(index + 1, MESSAGES.INDENTATION_TABS);
 					}
 					break;
 
 				case 'spaces':
-					if(!spacesRegExp.test(line)) {
+					if (!spacesRegExp.test(line)) {
 						// Indentation failed...
 						this._logLine(index + 1, MESSAGES.INDENTATION_SPACES);
 					} else {
 						// Indentation correct, is amount of spaces correct?
-						if(typeof this._settings.spaces === 'number') {
+						if (typeof this._settings.spaces === 'number') {
 							indent = line.match(spacesLeadingRegExp)[1].length;
-							if(indent % this._settings.spaces !== 0) {
+							if (indent % this._settings.spaces !== 0) {
 								// Indentation incorrect, create message:
-								spacesExpected = Math.round(indent/this._settings.spaces) * this._settings.spaces;
+								spacesExpected = Math.round(indent / this._settings.spaces) * this._settings.spaces;
 								message = MESSAGES.INDENTATION_SPACES_AMOUNT
 									.replace('{a}', spacesExpected)
 									.replace('{b}', indent);

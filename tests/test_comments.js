@@ -11,14 +11,14 @@ function run(test, cmd, ignores, finds) {
 	test.expect(ignores.length + finds.length);
 	exec(cmd, execOptions, function(error, stdout) {
 		ignores.forEach(function(line) {
-			test.equal(stdout.indexOf('L'+ line +':') > -1, false,
-				'this is a comment and should be ignored (L'+ line +')'
+			test.equal(stdout.indexOf('L' + line + ':') > -1, false,
+				'this is a comment and should be ignored (L' + line + ')'
 			);
 		});
 
 		finds.forEach(function(line) {
-			test.equal(stdout.indexOf('L'+ line +':') > -1, true,
-				'this is not a comment (L'+ line +')'
+			test.equal(stdout.indexOf('L' + line + ':') > -1, true,
+				'this is not a comment (L' + line + ')'
 			);
 		});
 
