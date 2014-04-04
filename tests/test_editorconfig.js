@@ -1,5 +1,4 @@
 var
-	MESSAGES = require('./../tasks/lintspaces/constants/messages'),
 	path = require('path'),
 	exec = require('child_process').exec,
 	execOptions = {
@@ -43,16 +42,5 @@ exports.tests = {
 		;
 
 		run(test, 'grunt lintspaces:editorconfig', linesToIgnore, linesToFind);
-	},
-
-	notfound: function(test) {
-		test.expect(1);
-		exec('grunt lintspaces:editorconfig_notfound', function(error, stdout) {
-			var message = MESSAGES.EDITORCONFIG_NOTFOUND.replace('{a}', 'path-doesnt-existis/.editorconfig');
-			test.equal(stdout.indexOf(message) > 0, true,
-				'Wrong message for not found .editorconfig file. Expected was "' + message + '".'
-			);
-			test.done();
-		});
 	}
 };
