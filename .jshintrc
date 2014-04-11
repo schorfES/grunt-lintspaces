@@ -8,7 +8,8 @@
 		"process": true,
 		"module": true,
 		"require": true,
-		"exports": true
+		"exports": true,
+		"__dirname": true
 	},
 	"immed": true,
 	"noarg": true,

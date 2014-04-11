@@ -10,7 +10,7 @@ module.exports = function(grunt) {
 			validator = new Validator(this.options()),
 			invalidFiles,
 			files = 0,
-			file, line
+			file, line, error
 		;
 
 		// Validate all files:
@@ -29,7 +29,7 @@ module.exports = function(grunt) {
 			grunt.log.writeln('Error: '.red + file);
 
 			for (line in invalidFiles[file]) {
-				for(error in line) {
+				for (error in line) {
 					grunt.log.writeln('L' + line + ': ' + error.yellow);
 				}
 			}
