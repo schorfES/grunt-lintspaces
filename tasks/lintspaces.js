@@ -29,7 +29,9 @@ module.exports = function(grunt) {
 			grunt.log.writeln('Error: '.red + file);
 
 			for (line in invalidFiles[file]) {
-				grunt.log.writeln('L' + line + ': ' + invalidFiles[file][line].yellow);
+				for(error in line) {
+					grunt.log.writeln('L' + line + ': ' + error.yellow);
+				}
 			}
 		}
 
