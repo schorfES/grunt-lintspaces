@@ -1,5 +1,4 @@
 var
-	MESSAGES = require('lintspaces').MESSAGES,
 	path = require('path'),
 	exec = require('child_process').exec,
 	execOptions = {
