@@ -1,0 +1,22 @@
+{
+	"boss": true,
+	"curly": true,
+	"eqeqeq": true,
+	"eqnull": true,
+	"expr": true,
+	"globals": {
+		"process": true,
+		"module": true,
+		"require": true,
+		"exports": true,
+		"__dirname": true
+	},
+	"immed": true,
+	"noarg": true,
+	"onevar": true,
+	"quotmark": "single",
+	"smarttabs": true,
+	"trailing": true,
+	"undef": true,
+	"unused": true
+}
