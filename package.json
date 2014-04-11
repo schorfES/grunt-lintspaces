@@ -26,9 +26,7 @@
     "grunt": "~0.4.1"
   },
   "dependencies": {
-    "editorconfig": "~0.11.4",
-    "lintspaces": "0.1.4",
-    "merge": "~1.1.2"
+    "lintspaces": "0.1.4"
   },
   "keywords": [
     "gruntplugin",
