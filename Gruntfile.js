@@ -10,31 +10,8 @@ module.exports = function(grunt) {
 				'tests/*.js'
 			],
 			options: {
-				'boss': true,
-				'curly': true,
-				'eqeqeq': true,
-				'eqnull': true,
-				'expr': true,
-				'globals': {
-					'module': true,
-					'require': true,
-					'exports': true,
-					'__dirname': true,
-					'window': true
-				},
-				'immed': true,
-				'noarg': true,
-				'onevar': true,
-				'quotmark': 'single',
-				'smarttabs': true,
-				'trailing': true,
-				'undef': true,
-				'unused': true
+				jshintrc: '.jshintrc'
 			}
-		},
-
-		nodeunit: {
-			all: ['tests/test_*.js']
 		},
 
 		jscs: {
@@ -44,6 +21,11 @@ module.exports = function(grunt) {
 				'tests/*.js'
 			]
 		},
+
+		nodeunit: {
+			all: ['tests/test_*.js']
+		},
+
 
 		lintspaces: {
 			self: {
