@@ -12,7 +12,7 @@ exports.tests = {
 		test.expect(1);
 		exec('grunt lintspaces:directory', execOptions, function(error, stdout) {
 			test.equal(
-				stdout.indexOf(MESSAGES.PASSED_LINTING.replace('{a}', '')) > -1,
+				stdout.indexOf('lint free.') > -1,
 				true,
 				'This is a directory.'
 			);
