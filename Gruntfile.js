@@ -23,16 +23,33 @@ module.exports = function(grunt) {
 		},
 
 		nodeunit: {
-			all: ['tests/test_*.js']
+			all: [
+				'tests/test_*.js'
+			]
 		},
 
+		concat: {
+			readme: {
+				src: [
+					'docs/intro.md',
+					'docs/installation.md',
+					'docs/parameters.md',
+					'node_modules/lintspaces/docs/options.md',
+					'docs/examples.md',
+					'docs/contribution.md',
+					'docs/license.md'
+				],
+				dest: 'README.md'
+			}
+		},
 
 		lintspaces: {
 			self: {
 				src: [
 					'Gruntfile.js',
 					'tasks/**/*.js',
-					'tests/*.js'
+					'tests/*.js',
+					'docs/*.md'
 				],
 				options: {
 					newline: true,
@@ -161,21 +178,27 @@ module.exports = function(grunt) {
 	grunt.loadTasks('tasks');
 	grunt.loadNpmTasks('grunt-contrib-jshint');
 	grunt.loadNpmTasks('grunt-contrib-nodeunit');
+	grunt.loadNpmTasks('grunt-contrib-concat');
 	grunt.loadNpmTasks('grunt-jscs-checker');
 
 	// define tasks
 	grunt.registerTask('test', [
-		'nodeunit'
+		'nodeunit:all'
 	]);
 
 	grunt.registerTask('validate', [
-		'jshint',
-		'jscs',
+		'jshint:all',
+		'jscs:all',
 		'lintspaces:self'
+	]);
+
+	grunt.registerTask('build', [
+		'concat:readme'
 	]);
 
 	grunt.registerTask('default', [
 		'validate',
-		'test'
+		'test',
+		'build'
 	]);
 };
