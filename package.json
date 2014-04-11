@@ -29,6 +29,7 @@
     "lintspaces": "0.1.4"
   },
   "keywords": [
+    "lintspaces",
     "gruntplugin",
     "validation",
     "lint",
