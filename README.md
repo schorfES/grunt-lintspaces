@@ -134,7 +134,7 @@ The following .editorconfig values are supported:
 * `indent_size` will check the amount of spaces
 * `trim_trailing_whitespace` will check for useless whitespaces
 
-# Configuration Examples
+## Configuration Examples
 
 ```javascript
 lintspaces: {
@@ -171,6 +171,12 @@ lintspaces: {
 	}
 }
 ```
+
+## Contribution
+
+### Tests & Validation
+
+Run `grunt` to lint and run the tests.
 
 ## License
 

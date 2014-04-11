@@ -1,4 +1,4 @@
-# Configuration Examples
+## Configuration Examples
 
 ```javascript
 lintspaces: {
