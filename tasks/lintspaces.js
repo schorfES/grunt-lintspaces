@@ -25,12 +25,16 @@ module.exports = function(grunt) {
 
 		// Log invalid files:
 		invalidFiles = validator.getInvalidFiles();
+
 		for (file in invalidFiles) {
 			grunt.log.writeln('Error: '.red + file);
 
 			for (line in invalidFiles[file]) {
-				for (error in line) {
-					grunt.log.writeln('L' + line + ': ' + error.yellow);
+				for (error in invalidFiles[file][line]) {
+					grunt.log.writeln(
+						'L' + line + ': ' +
+						invalidFiles[file][line][error].yellow
+					);
 				}
 			}
 		}
