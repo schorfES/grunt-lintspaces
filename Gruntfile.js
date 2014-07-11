@@ -35,6 +35,7 @@ module.exports = function(grunt) {
 					'docs/installation.md',
 					'docs/parameters.md',
 					'node_modules/lintspaces/docs/options.md',
+					'docs/task-options.md',
 					'docs/examples.md',
 					'docs/contribution.md',
 					'docs/license.md'
