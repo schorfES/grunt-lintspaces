@@ -1,16 +1,44 @@
 var
 	LINTING_PASSED = '{a} lint free.',
 	LINTING_FAILED = 'Formatting check failed.',
-	Validator = require('lintspaces')
+	Validator = require('lintspaces'),
+	defaults = {
+		showCodes: false,
+		showTypes: false,
+		showValid: false
+	}
 ;
 
 module.exports = function(grunt) {
+
+	function hasMessages(report) {
+		return Object.keys(report).length !== 0;
+	}
+
+	function reportMessages(report, options) {
+		var hasWarnings = false;
+
+		Object.keys(report).forEach(function(line) {
+			report[line].forEach(function(item) {
+				var message = '  L' + item.line + ': ';
+				message += options.showTypes ? '(' + item.type + ') ' : '';
+				message += item.message[item.type === 'warning' ? 'red' : 'yellow'];
+				message += options.showCodes ? ' [' + item.code + ']' : '';
+				grunt.log.writeln(message);
+
+				hasWarnings = hasWarnings || item.type === 'warning';
+			});
+		});
+
+		return hasWarnings;
+	}
+
 	grunt.registerMultiTask('lintspaces', 'Checking spaces', function() {
 		var
-			validator = new Validator(this.options()),
-			invalidFiles,
-			files = 0,
-			file, line, error
+			options = this.options(defaults),
+			validator = new Validator(options),
+			hasWarnings = false,
+			report
 		;
 
 		// Validate all files:
@@ -18,33 +46,27 @@ module.exports = function(grunt) {
 			file.src.forEach(function(path) {
 				if (grunt.file.isFile(path)) {
 					validator.validate(path);
-					files++;
+					report = validator.getInvalidLines(path);
+
+					// Is file valid? Messages in report?
+					if (hasMessages(report)) {
+						// ... log reports messages:
+						grunt.log.writeln(String.fromCharCode(0x2613).red + ' ' + path.red);
+						hasWarnings = hasWarnings || reportMessages(report, options);
+
+					} else if (options.showValid) {
+						// ... file is valid:
+						grunt.log.writeln(String.fromCharCode(0x2714).green + ' ' + path);
+					}
 				}
 			});
 		});
 
-		// Log invalid files:
-		invalidFiles = validator.getInvalidFiles();
-
-		for (file in invalidFiles) {
-			grunt.log.writeln('Error: '.red + file);
-
-			for (line in invalidFiles[file]) {
-				for (error in invalidFiles[file][line]) {
-					grunt.log.writeln(
-						'L' + line + ': ' +
-						invalidFiles[file][line][error].yellow
-					);
-				}
-			}
-		}
-
-		// Log final validation message:
-		if (Object.keys(invalidFiles).length) {
+		if (hasWarnings) {
 			grunt.log.writeln();
 			grunt.fail.warn(LINTING_FAILED);
 		} else {
-			grunt.log.ok(LINTING_PASSED.replace('{a}', files));
+			grunt.log.ok(LINTING_PASSED.replace('{a}', validator.getProcessedFiles()));
 		}
 	});
 };
