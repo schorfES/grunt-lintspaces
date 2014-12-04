@@ -32,6 +32,7 @@ module.exports = function(grunt) {
 			readme: {
 				src: [
 					'docs/intro.md',
+					'docs/issues.md',
 					'docs/installation.md',
 					'docs/parameters.md',
 					'node_modules/lintspaces/docs/options.md',
