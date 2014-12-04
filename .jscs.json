@@ -1,3 +1,4 @@
+
 {
 	"requireCurlyBraces": [
 		"if",
@@ -23,7 +24,7 @@
 	"disallowSpacesInsideArrayBrackets": true,
 	"disallowSpacesInsideParentheses": true,
 	"disallowSpaceAfterObjectKeys": true,
-	"disallowLeftStickedOperators": [
+		"requireSpaceBeforeBinaryOperators": [
 		"?",
 		"+",
 		"-",
@@ -41,13 +42,12 @@
 		"&&",
 		"||"
 	],
-	"requireRightStickedOperators": ["!"],
-	"disallowRightStickedOperators": [
+	"requireSpaceAfterBinaryOperators": [
 		"?",
 		"+",
+		"-",
 		"/",
 		"*",
-		":",
 		"=",
 		"==",
 		"===",
@@ -60,7 +60,6 @@
 		"&&",
 		"||"
 	],
-	"requireLeftStickedOperators": [","],
 	"disallowKeywords": ["with"],
 	"disallowKeywordsOnNewLine": ["else"],
 	"requireLineFeedAtFileEnd": true,
