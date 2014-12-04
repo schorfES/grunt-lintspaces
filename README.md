@@ -1,12 +1,19 @@
 #grunt-lintspaces
 
-A Grunt task for checking spaces in files depending on the nodemodule
+A Grunt task for checking spaces in files depending on the node module
 [lintspaces](https://github.com/schorfES/node-lintspaces).
 
 If you're looking for a [gulpjs](http://gulpjs.com/) task to validate your
 files, take a look at this one:
 
 * [gulp-lintspaces](https://github.com/ck86/gulp-lintspaces)
+
+## Issues & feature requests
+
+This grunt task is just a wrapper for the node module called
+[lintspaces](https://github.com/schorfES/node-lintspaces). If you have any
+issues or feature requests, please consider if this may belongs to the node
+module its self.
 
 ## Getting Started
 _If you haven't used [grunt](http://gruntjs.com/) before, be sure to check out
