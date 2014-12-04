@@ -7,6 +7,20 @@
     "url": "https://github.com/schorfES/grunt-lintspaces.git"
   },
   "author": "Norman Rusch (nrmnrsh / schorfES)",
+  "contributors": [
+    {
+      "name": "Norman Rusch",
+      "url": "https://github.com/schorfES"
+    },
+    {
+      "name": "Ben Briggs",
+      "url": "https://github.com/ben-eb"
+    },
+    {
+      "name": "yurks",
+      "url": "https://github.com/yurks"
+    }
+  ],
   "readmeFilename": "README.md",
   "main": "Gruntfile.js",
   "licenses": [
