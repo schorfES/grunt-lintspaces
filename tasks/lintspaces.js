@@ -38,6 +38,7 @@ module.exports = function(grunt) {
 			options = this.options(defaults),
 			validator = new Validator(options),
 			hasWarnings = false,
+			warnings,
 			report
 		;
 
@@ -52,7 +53,9 @@ module.exports = function(grunt) {
 					if (hasMessages(report)) {
 						// ... log reports messages:
 						grunt.log.writeln(String.fromCharCode(0x2613).red + ' ' + path.red);
-						hasWarnings = hasWarnings || reportMessages(report, options);
+
+						warnings = reportMessages(report, options);
+						hasWarnings = hasWarnings || warnings;
 
 					} else if (options.showValid) {
 						// ... file is valid:
