@@ -1,60 +1,63 @@
 {
-  "name": "grunt-lintspaces",
-  "description": "A Grunt task for checking spaces in files",
-  "version": "0.6.1",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/schorfES/grunt-lintspaces.git"
-  },
-  "author": "Norman Rusch (nrmnrsh / schorfES)",
-  "contributors": [
-    {
-      "name": "Norman Rusch",
-      "url": "https://github.com/schorfES"
-    },
-    {
-      "name": "Ben Briggs",
-      "url": "https://github.com/ben-eb"
-    },
-    {
-      "name": "yurks",
-      "url": "https://github.com/yurks"
-    }
-  ],
-  "readmeFilename": "README.md",
-  "main": "Gruntfile.js",
-  "licenses": [
-    {
-      "type": "MIT",
-      "url": "https://github.com/schorfES/grunt-lintspaces/blob/master/LICENSE"
-    }
-  ],
-  "devDependencies": {
-    "grunt": "~0.4.1",
-    "grunt-contrib-concat": "0.4.0",
-    "grunt-contrib-jshint": "0.4.3",
-    "grunt-contrib-nodeunit": "0.2.0",
-    "grunt-jscs": "1.0.0"
-  },
-  "peerDependencies": {
-    "grunt": "~0.4.1"
-  },
-  "dependencies": {
-    "lintspaces": "0.2.2"
-  },
-  "keywords": [
-    "lintspaces",
-    "gruntplugin",
-    "validation",
-    "lint",
-    "spaces",
-    "trailingspaces",
-    "indent",
-    "indentation",
-    "newlines",
-    "eof",
-    "eol",
-    "editorconfig",
-    ".editorconfig"
-  ]
+	"name": "grunt-lintspaces",
+	"description": "A Grunt task for checking spaces in files",
+	"version": "0.6.2",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/schorfES/grunt-lintspaces.git"
+	},
+	"author": "Norman Rusch (nrmnrsh / schorfES)",
+	"contributors": [
+		{
+			"name": "Norman Rusch",
+			"url": "https://github.com/schorfES"
+		},
+		{
+			"name": "Ben Briggs",
+			"url": "https://github.com/ben-eb"
+		},
+		{
+			"name": "yurks",
+			"url": "https://github.com/yurks"
+		}
+	],
+	"readmeFilename": "README.md",
+	"main": "Gruntfile.js",
+	"scripts": {
+		"test": "grunt validate test"
+	},
+	"licenses": [
+		{
+			"type": "MIT",
+			"url": "https://github.com/schorfES/grunt-lintspaces/blob/master/LICENSE"
+		}
+	],
+	"devDependencies": {
+		"grunt": "~0.4.1",
+		"grunt-contrib-concat": "0.4.0",
+		"grunt-contrib-jshint": "0.4.3",
+		"grunt-contrib-nodeunit": "0.2.0",
+		"grunt-jscs": "1.0.0"
+	},
+	"peerDependencies": {
+		"grunt": "~0.4.1"
+	},
+	"dependencies": {
+		"lintspaces": "0.2.3"
+	},
+	"keywords": [
+		"lintspaces",
+		"gruntplugin",
+		"validation",
+		"lint",
+		"spaces",
+		"trailingspaces",
+		"indent",
+		"indentation",
+		"newlines",
+		"eof",
+		"eol",
+		"editorconfig",
+		".editorconfig"
+	]
 }
