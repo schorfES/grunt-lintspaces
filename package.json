@@ -43,7 +43,7 @@
 		"grunt": "~0.4.1"
 	},
 	"dependencies": {
-		"lintspaces": "0.2.3"
+		"lintspaces": "0.3.0"
 	},
 	"keywords": [
 		"lintspaces",
