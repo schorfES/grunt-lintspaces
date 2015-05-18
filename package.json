@@ -1,7 +1,7 @@
 {
 	"name": "grunt-lintspaces",
 	"description": "A Grunt task for checking spaces in files",
-	"version": "0.6.3",
+	"version": "0.6.4",
 	"repository": {
 		"type": "git",
 		"url": "https://github.com/schorfES/grunt-lintspaces.git"
@@ -43,7 +43,7 @@
 		"grunt": "~0.4.1"
 	},
 	"dependencies": {
-		"lintspaces": "0.3.0"
+		"lintspaces": "0.3.1"
 	},
 	"keywords": [
 		"lintspaces",
