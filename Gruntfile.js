@@ -177,6 +177,25 @@ module.exports = function(grunt) {
 					ignores: ['js-comments'],
 					editorconfig: 'path-doesnt-existis/.editorconfig'
 				}
+			},
+			junit_inactive: {
+				src: [
+					'tests/files/indentation_tabs.txt',
+					'tests/files/indentation_spaces.txt'
+				],
+				options: {
+					indentation: 'tabs'
+				}
+			},
+			junit_active: {
+				src: [
+					'tests/files/indentation_tabs.txt',
+					'tests/files/indentation_spaces.txt'
+				],
+				options: {
+					indentation: 'tabs',
+					junit: 'tests/temp/junit.xml'
+				}
 			}
 		}
 	});
