@@ -39,19 +39,14 @@ module.exports = function(grunt) {
 
 	function reportJunit(report, path, junitwriter) {
 		if (junitwriter) {
-			var suite = junitwriter.addTestsuite(path);
-			console.log('Add testsuite '+ path);
+			var
+				suite = junitwriter.addTestsuite(path),
+				testcase = suite.addTestcase(path, 'grunt.lintspaces')
+			;
 
 			Object.keys(report).forEach(function(line) {
-				var testcase = suite.addTestcase(path, 'Line: ' + line);
-
-				console.log('Add testcase '+ line);
-
 				report[line].forEach(function(item) {
-					console.log('Add failure '+ item.message);
-
-					// TODO: Add failure for after fix of API in junitwriter
-					// testcase.addFailure(item.message, item.type);
+					testcase.addFailure(item.message + ' at line ' + line, item.type);
 				});
 			});
 		}
@@ -80,7 +75,6 @@ module.exports = function(grunt) {
 		// Create JunitWirter instance
 		if (typeof options.junit === 'string') {
 			junitwriter = new JUnitWriter();
-			console.log('create junit writer');
 		}
 
 		// Validate all files:
@@ -113,7 +107,7 @@ module.exports = function(grunt) {
 			junitwriter.save(options.junit, function() {
 				complete(hasWarnings, validator);
 				done();
-			})
+			});
 		} else {
 			complete(hasWarnings, validator);
 			done();
