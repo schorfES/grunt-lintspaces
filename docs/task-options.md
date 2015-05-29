@@ -30,3 +30,7 @@ will appear at the end of each message. Default value is `false`.
 
 When adding a path as string for the `junit` option, the grunt task will write
 a junit xml report to the specified path. Default value is `false` – disabled.
+
+```javascript
+	junit: '.grunt/junit-lintspaces.xml'
+```
