@@ -233,6 +233,11 @@ will appear at the end of each message. Default value is `false`.
 	showCodes: true
 ```
 
+### junit option
+
+When adding a path as string for the `junit` option, the grunt task will write
+a junit xml report to the specified path. Default value is `false` – disabled.
+
 ## Configuration Examples
 
 ```javascript
