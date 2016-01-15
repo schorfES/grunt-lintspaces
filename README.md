@@ -8,7 +8,7 @@ A Grunt task for checking spaces in files depending on the node module
 If you're looking for a [gulpjs](http://gulpjs.com/) task to validate your
 files, take a look at this one:
 
-* [gulp-lintspaces](https://github.com/ck86/gulp-lintspaces)
+* [gulp-lintspaces](https://github.com/AlbertoElias/gulp-lintspaces)
 
 ## Issues & feature requests
 
