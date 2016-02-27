@@ -33,11 +33,11 @@
 		}
 	],
 	"devDependencies": {
-		"grunt": "~0.4.1",
-		"grunt-contrib-concat": "0.4.0",
-		"grunt-contrib-jshint": "0.4.3",
-		"grunt-contrib-nodeunit": "0.2.0",
-		"grunt-jscs": "1.0.0"
+		"grunt": ">=0.4.0",
+		"grunt-contrib-concat": "1.0.0",
+		"grunt-contrib-jshint": "1.0.0",
+		"grunt-contrib-nodeunit": "0.4.1",
+		"grunt-jscs": "2.7.0"
 	},
 	"peerDependencies": {
 		"grunt": ">=0.4.0"
