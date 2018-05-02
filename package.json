@@ -26,12 +26,7 @@
 	"scripts": {
 		"test": "grunt validate test"
 	},
-	"licenses": [
-		{
-			"type": "MIT",
-			"url": "https://github.com/schorfES/grunt-lintspaces/blob/master/LICENSE"
-		}
-	],
+	"license": "MIT",
 	"devDependencies": {
 		"grunt": ">=0.4.0",
 		"grunt-contrib-concat": "^1.0.0",
