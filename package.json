@@ -1,7 +1,7 @@
 {
 	"name": "grunt-lintspaces",
 	"description": "A Grunt task for checking spaces in files",
-	"version": "0.8.2",
+	"version": "0.8.3",
 	"repository": {
 		"type": "git",
 		"url": "https://github.com/schorfES/grunt-lintspaces.git"
@@ -29,17 +29,17 @@
 	"license": "MIT",
 	"devDependencies": {
 		"grunt": ">=0.4.0",
-		"grunt-contrib-concat": "^1.0.0",
-		"grunt-contrib-jshint": "^1.0.0",
-		"grunt-contrib-nodeunit": "^1.0.0",
-		"grunt-jscs": "2.7.0"
+		"grunt-contrib-concat": "^1.0.1",
+		"grunt-contrib-jshint": "^1.1.0",
+		"grunt-contrib-nodeunit": "^2.0.0",
+		"grunt-jscs": "^3.0.1"
 	},
 	"peerDependencies": {
 		"grunt": ">=0.4.0"
 	},
 	"dependencies": {
 		"junitwriter": "^0.3.1",
-		"lintspaces": "^0.6.1"
+		"lintspaces": "^0.6.2"
 	},
 	"keywords": [
 		"lintspaces",
