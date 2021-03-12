@@ -4,8 +4,8 @@ A Grunt task for checking spaces in files depending on the node module
 [lintspaces](https://github.com/schorfES/node-lintspaces).
 
 [![CI Status](https://github.com/schorfES/grunt-lintspaces/actions/workflows/ci.yml/badge.svg)](https://github.com/schorfES/grunt-lintspaces/actions)
-[![Travis Status](https://travis-ci.org/schorfES/grunt-lintspaces.png?branch=master)](https://travis-ci.org/schorfES/grunt-lintspaces)
-![David DM Status](https://david-dm.org/schorfES/grunt-lintspaces.svg?branch=master)
+[![Travis Status](https://travis-ci.org/schorfES/grunt-lintspaces.png?branch=main)](https://travis-ci.org/schorfES/grunt-lintspaces)
+![David DM Status](https://david-dm.org/schorfES/grunt-lintspaces.svg?branch=main)
 
 If you're looking for a [gulpjs](http://gulpjs.com/) task to validate your
 files, take a look at this one:
@@ -328,4 +328,4 @@ Run `grunt` to lint and run the tests.
 
 ## License
 
-[LICENSE (MIT)](https://github.com/schorfES/grunt-lintspaces/blob/master/LICENSE)
+[LICENSE (MIT)](https://github.com/schorfES/grunt-lintspaces/blob/main/LICENSE)
