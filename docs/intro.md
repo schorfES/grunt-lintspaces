@@ -3,6 +3,7 @@
 A Grunt task for checking spaces in files depending on the node module
 [lintspaces](https://github.com/schorfES/node-lintspaces).
 
+[![CI Status](https://github.com/schorfES/grunt-lintspaces/actions/workflows/ci.yml/badge.svg)](https://github.com/schorfES/grunt-lintspaces/actions)
 [![Travis Status](https://travis-ci.org/schorfES/grunt-lintspaces.png?branch=master)](https://travis-ci.org/schorfES/grunt-lintspaces)
 ![David DM Status](https://david-dm.org/schorfES/grunt-lintspaces.svg?branch=master)
 
