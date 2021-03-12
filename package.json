@@ -1,62 +1,62 @@
 {
-	"name": "grunt-lintspaces",
-	"description": "A Grunt task for checking spaces in files",
-	"version": "0.9.0",
-	"repository": {
-		"type": "git",
-		"url": "https://github.com/schorfES/grunt-lintspaces.git"
-	},
-	"author": "Norman Rusch (nrmnrsh / schorfES)",
-	"contributors": [
-		{
-			"name": "Norman Rusch",
-			"url": "https://github.com/schorfES"
-		},
-		{
-			"name": "Ben Briggs",
-			"url": "https://github.com/ben-eb"
-		},
-		{
-			"name": "yurks",
-			"url": "https://github.com/yurks"
-		}
-	],
-	"readmeFilename": "README.md",
-	"main": "Gruntfile.js",
-	"scripts": {
-		"test": "grunt validate test"
-	},
-	"license": "MIT",
-	"devDependencies": {
-		"grunt": "^1.0.4",
-		"grunt-contrib-concat": "^1.0.1",
-		"grunt-contrib-jshint": "^2.0.0",
-		"grunt-contrib-nodeunit": "^2.0.0",
-		"grunt-jscs": "^3.0.1"
-	},
-	"peerDependencies": {
-		"grunt": ">=1.0.0"
-	},
-	"engines": {
-		"node": ">=8"
-	},
-	"dependencies": {
-		"junitwriter": "^0.4.1",
-		"lintspaces": "^0.7.0"
-	},
-	"keywords": [
-		"lintspaces",
-		"gruntplugin",
-		"validation",
-		"lint",
-		"spaces",
-		"trailingspaces",
-		"indent",
-		"indentation",
-		"newlines",
-		"eof",
-		"eol",
-		"editorconfig",
-		".editorconfig"
-	]
+  "name": "grunt-lintspaces",
+  "description": "A Grunt task for checking spaces in files",
+  "version": "0.9.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/schorfES/grunt-lintspaces.git"
+  },
+  "author": "Norman Rusch (nrmnrsh / schorfES)",
+  "contributors": [
+    {
+      "name": "Norman Rusch",
+      "url": "https://github.com/schorfES"
+    },
+    {
+      "name": "Ben Briggs",
+      "url": "https://github.com/ben-eb"
+    },
+    {
+      "name": "yurks",
+      "url": "https://github.com/yurks"
+    }
+  ],
+  "readmeFilename": "README.md",
+  "main": "Gruntfile.js",
+  "scripts": {
+    "test": "grunt validate test"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "grunt": "^1.0.4",
+    "grunt-contrib-concat": "^1.0.1",
+    "grunt-contrib-jshint": "^2.0.0",
+    "grunt-contrib-nodeunit": "^2.0.0",
+    "grunt-jscs": "^3.0.1"
+  },
+  "peerDependencies": {
+    "grunt": ">=1.0.0"
+  },
+  "engines": {
+    "node": ">=8"
+  },
+  "dependencies": {
+    "junitwriter": "^0.4.1",
+    "lintspaces": "^0.7.0"
+  },
+  "keywords": [
+    "lintspaces",
+    "gruntplugin",
+    "validation",
+    "lint",
+    "spaces",
+    "trailingspaces",
+    "indent",
+    "indentation",
+    "newlines",
+    "eof",
+    "eol",
+    "editorconfig",
+    ".editorconfig"
+  ]
 }
