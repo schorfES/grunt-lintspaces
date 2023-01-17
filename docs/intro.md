@@ -1,4 +1,4 @@
-#grunt-lintspaces
+# grunt-lintspaces
 
 A Grunt task for checking spaces in files depending on the node module
 [lintspaces](https://github.com/schorfES/node-lintspaces).
