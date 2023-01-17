@@ -42,7 +42,7 @@
   },
   "dependencies": {
     "junitwriter": "^0.4.1",
-    "lintspaces": "^0.10.0"
+    "lintspaces": "^0.10.1"
   },
   "keywords": [
     "lintspaces",
