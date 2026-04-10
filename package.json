@@ -41,7 +41,7 @@
     "node": ">=18"
   },
   "dependencies": {
-    "junitwriter": "^0.4.1",
+    "junitwriter": "^1.0.0",
     "lintspaces": "^1.0.0"
   },
   "keywords": [
