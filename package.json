@@ -1,10 +1,10 @@
 {
   "name": "grunt-lintspaces",
   "description": "A Grunt task for checking spaces in files",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "repository": {
     "type": "git",
-    "url": "https://github.com/schorfES/grunt-lintspaces.git"
+    "url": "git+https://github.com/schorfES/grunt-lintspaces.git"
   },
   "author": "Norman Rusch (nrmnrsh / schorfES)",
   "contributors": [
